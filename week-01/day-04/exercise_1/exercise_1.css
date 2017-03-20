@@ -1,0 +1,10 @@
+div {
+font-family: Arial;
+font-size: 32px;
+width: 347px;
+height: 133px;
+padding: 22px 16px 13px 20px;
+background-color: rgb(14, 146, 161);
+border: 5px solid rgb(87, 189, 158);
+margin: 4px 4px 16px
+}

@@ -1,0 +1,26 @@
+.elso, .masodik{
+  margin: 2px 2px 3px 3px;
+  border: 16px solid #4685F2;
+  padding: 0px;
+  width: 348px;
+  color: white;
+  font-size: 36px;
+}
+
+.North, .South {
+  height: 128px;
+  line-height: 128px;
+  text-align: center;
+  border: 0px;
+  margin: 0px;
+  text-align: center;
+
+}
+
+.North {
+background: #E67675;
+}
+
+.South {
+background: #A8E7E6;
+}

@@ -1,0 +1,13 @@
+body {
+font-size: 17px;
+}
+
+main {
+margin-left: 40px;
+}
+
+p{
+width: 430px;
+padding-left: 20px;
+border-left: 2px solid black;
+}

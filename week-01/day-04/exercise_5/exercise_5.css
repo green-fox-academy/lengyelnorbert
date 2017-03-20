@@ -1,0 +1,40 @@
+body {
+font-size: 17px;
+
+}
+
+main {
+margin-left: 60px
+
+}
+
+h1 {
+  color: blue;
+}
+
+h2 {
+color: #ECBC76;
+font-size: 25px;
+font-weight: bold;
+}
+
+li {
+color: blue;
+}
+
+.no-need-for-button{
+list-style: none;
+
+}
+
+.sublist {
+color: black;
+}
+
+ul {
+list-style: square;
+}
+
+.piros{
+color: red;
+}
