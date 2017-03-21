@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class CountFromTo {
-// Create a program that asks for two numbers
+
+  // Create a program that asks for two numbers
 // If the second number is not bigger than the first one it should print:
 // "The second number should be bigger"
 //
@@ -15,11 +16,12 @@ public class CountFromTo {
     System.out.println("Give me the second number pls:");
     int secondNumber = thisInput.nextInt();
 
-    if (secondNumber <= firstNumber){
+    if (secondNumber <= firstNumber) {
       System.out.println("The second number should be bigger");
-    }
-    else {
-      for (int printNumber )
+    } else {
+      for (int i = firstNumber; i <= secondNumber; i++) {
+        System.out.println(i);
+      }
     }
 
   }
