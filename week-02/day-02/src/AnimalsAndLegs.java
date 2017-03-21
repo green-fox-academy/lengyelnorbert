@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class AnimalsAndLegs {
+
   public static void main(String[] args) {
     // Write a program that asks for two integers
     // The first represents the number of chickens the farmer has
@@ -14,7 +15,8 @@ public class AnimalsAndLegs {
     System.out.println("That is cool... And how many pigs do you have?");
     int pigNumber = scanner2.nextInt();
     totallegs = (chickenNumber * 2) + (pigNumber * 4);
-    System.out.println("I can tell you, that your chickens and pigs together have " + totallegs + " legs... You are welcomed!");
+    System.out.println("I can tell you, that your chickens and pigs together have " + totallegs
+            + " legs... You are welcomed!");
   }
 }
 
