@@ -7,12 +7,14 @@ public class Printer {
     String a1 = "I am";
     String a2 = "the";
     String a3 = "King";
+    String a4 = "of";
 
-    printer(a1, a2, a3);
+    printer(a1, a2, a3, a4);
   }
 
-  public static void printer(String b1, String b2, String b3) {
-    System.out.println(b1 + " " + b2 + " " + b3);
+  public static void printer(String... akarmi) {
+    for (String ezt : akarmi)
+    System.out.print(ezt + " ");
 
   }
 
