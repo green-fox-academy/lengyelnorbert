@@ -23,7 +23,6 @@ public class Palindrome {
     System.out.println("Your original word was:" + isItPalindrom);
     System.out.println("Your original word backwards is :" + wordbackwords);
 
-
     if (wordbackwords.equals(isItPalindrom)) {
       System.out.print("So it is a palindrom");
     } else {

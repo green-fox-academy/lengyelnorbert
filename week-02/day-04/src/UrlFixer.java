@@ -3,26 +3,20 @@
 // Try to solve it more than once using different String functions!
 public class UrlFixer {
 
-  public static void main (String[] args) {
-
+  public static void main(String[] args) {
 
     String url = "https//www.reddit.com/r/nevertellmethebots";
-    System.out.println( "Original url: " + url);
+    System.out.println("Original url: " + url);
     url = url.replace("bots", "odds");
     url = url.replace("https", "https:");
     System.out.println("First exercise url: " + url);
 
-
-
     url = "https//www.reddit.com/r/nevertellmethebots";
-    System.out.println( "Original url: " + url);
+    System.out.println("Original url: " + url);
     String url1, url2 = "";
     url1 = url.substring(0, 5);
     url2 = url.substring(5, 38);
     System.out.println(url1 + ":" + url2 + "odds");
-
-
-
 
 
   }
