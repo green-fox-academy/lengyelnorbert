@@ -18,13 +18,13 @@ public class Matchmaking {
     } else {
       longerList = girls.size();
     }
-
-    for (int i = 0; i < longerList - 1; i++) {
-      if (i <= girls.size() && i <= boys.size()) {
+    longerList = 99;
+    for (int i = 0; i < longerList; i++) {
+      if (i < girls.size() && i < boys.size()) {
         order.add(girls.get(i) + ", " + boys.get(i));
-      } else if (i <= boys.size()) {
+      } else if (i < boys.size()) {
         order.add(boys.get(i));
-      } else if (i <= girls.size()) {
+      } else if (i < girls.size()) {
         order.add(girls.get(i));
 
       }
