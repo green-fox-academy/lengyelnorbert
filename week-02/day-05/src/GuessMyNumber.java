@@ -29,22 +29,26 @@ public class GuessMyNumber {
       } else if (guess > autRandomNum) {
         lives = lives - 1;
         System.out.println("The number is smaller... You have " + lives + " lives remaining");
-        if (guess > higherEnd){
+        if (guess > higherEnd) {
           System.out.println("By the way, your guess was out of the range you set up");
+        } else {
+          higherEnd = guess;
         }
-        else {higherEnd = guess;}
       } else if (guess < autRandomNum) {
         lives = lives - 1;
         System.out.println("The number is bigger...You have " + lives + " lives remaining");
-        if (guess < lowerEnd){
+        if (guess < lowerEnd) {
           System.out.println("By the way, your guess was out of the range you set up");
+        } else {
+          lowerEnd = guess;
         }
-        else {lowerEnd = guess;}
       }
     }
     System.out.println("Well, maybe next time...");
+    System.exit(0);
   }
 }
+
 
 
 
