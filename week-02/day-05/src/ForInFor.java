@@ -60,10 +60,3 @@ public class ForInFor {
   }
 
 }
-
-//while (UserInput() != 0);
-
-//        for(int i=0;i<5;i++){
-//        int numberToAdd=UserInput();
-//        ourlist.add(numberToAdd);
-//        }
