@@ -6,8 +6,8 @@ import javax.swing.WindowConstants;
 
 public class LineInTheMiddle {
 
-  public static void mainDraw(Graphics graphics){
-    graphics.drawLine(0, 150, 300, 150 );
+  public static void mainDraw(Graphics graphics) {
+    graphics.drawLine(0, 150, 300, 150);
     graphics.drawLine(150, 0, 150, 300);
 
   }
@@ -21,7 +21,9 @@ public class LineInTheMiddle {
     jFrame.setLocationRelativeTo(null);
     jFrame.setVisible(true);
   }
+
   static class ImagePanel extends JPanel {
+
     @Override
     protected void paintComponent(Graphics graphics) {
       super.paintComponent(graphics);

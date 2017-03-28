@@ -4,18 +4,13 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class ColoredBox {
+public class Diagonals {
 
   public static void mainDraw(Graphics graphics) {
-    // draw a box that has different colored lines on each edge.
-    graphics.setColor(new Color(50, 100, 0));
-    graphics.drawLine(50, 50, 250, 50);
-    graphics.setColor(new Color(250, 0, 150));
-    graphics.drawLine(250, 50, 250, 250);
-    graphics.setColor(new Color(250, 200, 150));
-    graphics.drawLine(250, 250, 50, 250);
-    graphics.setColor(new Color(50, 0, 250));
-    graphics.drawLine(50, 250, 50, 50);
+    // draw the canvas' diagonals in green.
+    graphics.setColor(new Color(0, 255, 0));
+    graphics.drawLine(0, 0, 300, 300);
+    graphics.drawLine(300, 0, 0, 300);
 
 
   }
