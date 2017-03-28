@@ -17,9 +17,9 @@ public class LinePlayQuarters {
       graphics.setColor(new Color(0, 255, 0));
       graphics.drawLine(0, i, i+25, 320);
       graphics.setColor(new Color(255, 0, 0));
-      graphics.drawLine(0, 0, 0, 0);
+      graphics.drawLine(0, 320-i, i+25, 0);
       graphics.setColor(new Color(0, 0, 255));
-      graphics.drawLine(0, 0, 0, 0);
+      graphics.drawLine(i, 320, 320, 320-i);
     }
 
   }
