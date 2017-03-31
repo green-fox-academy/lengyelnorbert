@@ -8,32 +8,30 @@ public class Triangles {
 
   public static void mainDraw(Graphics graphics) {
 
-    int canSize = 400;
+    int canSize = 600;
     int triH = canSize / 2;
     int mX = canSize / 2;
     int mY = canSize / 4;
     fract(mX, mY, triH, graphics);
-
   }
 
   public static void drawTriangle(int mX, int mY, int triH, Graphics graphics) {
-    graphics.drawLine(mX, mY-triH/2, mX + triH / 2, mY + triH / 2);
-    graphics.drawLine(mX, mY-triH/2, mX - triH / 2, mY + triH / 2);
+    graphics.drawLine(mX, mY - triH / 2, mX + triH / 2, mY + triH / 2);
+    graphics.drawLine(mX, mY - triH / 2, mX - triH / 2, mY + triH / 2);
     graphics.drawLine(mX + triH / 2, mY + triH / 2, mX - triH / 2, mY + triH / 2);
   }
-  public static void fract(int mX, int mY, int triH, Graphics graphics){
-    if (triH<4){
+
+  public static void fract(int mX, int mY, int triH, Graphics graphics) {
+    if (triH < 4) {
       return;
-    }
-    else {
+    } else {
       drawTriangle(mX, mY, triH, graphics);
-      fract(mX-triH/2, mY-triH/4, triH/2, graphics);
-      fract(mX+triH/2, mY-triH/4, triH/2, graphics);
-      fract(mX, mY+triH/4*3, triH/2, graphics);
+      fract(mX - triH / 2, mY - triH / 4, triH / 2, graphics);
+      fract(mX + triH / 2, mY - triH / 4, triH / 2, graphics);
+      fract(mX, mY + triH / 4 * 3, triH / 2, graphics);
     }
 
   }
-
 
   //    Don't touch the code below
   public static void main(String[] args) {

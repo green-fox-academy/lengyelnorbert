@@ -10,10 +10,7 @@ public class SierpinskyCarpet {
     int canvasSize = 600;
     int boxSize = canvasSize/3;
 
-
     fract(boxSize, boxSize, boxSize,  graphics);
-
-
   }
 
   public static void fract (int startX, int startY, int boxSize, Graphics graphics){
@@ -21,6 +18,10 @@ public class SierpinskyCarpet {
       return;
     }
     else{
+      int r = (int) (Math.random() * 255);
+      int g = (int) (Math.random() * 255);
+      int b = (int) (Math.random() * 255);
+      graphics.setColor(new Color(r, g, b));
       drawBlackSquare(startX, startY, boxSize, graphics);
       fract(startX-boxSize/3*2, startY-boxSize/3*2, boxSize/3,  graphics);
       fract(startX+boxSize/3, startY-boxSize/3*2, boxSize/3, graphics);
@@ -38,8 +39,6 @@ public class SierpinskyCarpet {
     graphics.fillRect(startX, startY, boxSize, boxSize);
   }
 
-
-
   //    Don't touch the code below
   public static void main(String[] args) {
     JFrame jFrame = new JFrame("Drawing");
@@ -49,6 +48,7 @@ public class SierpinskyCarpet {
     jFrame.setLocationRelativeTo(null);
     jFrame.setVisible(true);
   }
+
   static class ImagePanel extends JPanel{
     @Override
     protected void paintComponent(Graphics graphics) {
