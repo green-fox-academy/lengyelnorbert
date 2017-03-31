@@ -37,7 +37,7 @@ public class recRepSquares {
       fract(x, y+maxLines/3, maxLines/3, graphics);
       fract(x+maxLines/3*2, y+maxLines/3, maxLines/3, graphics);
       fract(x+maxLines/3, y+maxLines/3*2, maxLines/3, graphics);
-
+      fract(x+maxLines/3, y+maxLines/3*2, maxLines/3, graphics);
     }
   }
 
