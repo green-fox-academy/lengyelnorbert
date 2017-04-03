@@ -32,7 +32,7 @@ public class Dominoes {
         }
       }
     }
-    
+
     System.out.println(sortedDom);
 
 
