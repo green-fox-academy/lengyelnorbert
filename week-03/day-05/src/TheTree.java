@@ -7,10 +7,34 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class TheTree {
 
   public static void mainDraw(Graphics graphics) {
+    int canSize = 600;
+    int X1 = canSize/2;
+    int Y1 = canSize;
+    int X2 = canSize/2;
+    int Y2 = canSize - canSize/5;
+    int depth = 100;
 
+    fract(X1, Y1, X2, Y2, depth, graphics);
+  }
+
+  public static void fract (int X1, int Y1, int X2, int Y2, int depth, Graphics graphics){
+    if (depth<5){
+      return;
+    }
+    else {
+      drawTree(X1, Y1, X2, Y2, graphics);
+      fract (X2, Y2, X2-X2/10, Y2-Y2/2 , depth-10, graphics);
+
+    }
 
 
   }
+
+
+  public static void drawTree (int X1, int Y1, int X2, int Y2, Graphics graphics){
+    graphics.drawLine(X1, Y1, X2, Y2);
+  }
+
 
 
 
