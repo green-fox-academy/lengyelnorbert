@@ -1,11 +1,11 @@
 
 public class Student {
 
-  public static void learn() {
+  public void learn() {
   }
 
-  public void question() {
-    Teacher.answer();
+  public void question(Teacher akarmi) {
+    akarmi.answer();
   }
 
 }
