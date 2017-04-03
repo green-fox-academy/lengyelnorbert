@@ -20,6 +20,9 @@ public class Sharpie {
   public void shUse(){
     shInkAmount--;
   }
+  boolean isUsable(){
+    return  shInkAmount >0;
+  }
 
 }
 
