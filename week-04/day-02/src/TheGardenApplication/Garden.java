@@ -44,11 +44,16 @@ public class Garden {
     System.out.println("");
     System.out.println("Watering with " + waterAmount);
     howManyPlantsNeedW = howManyPlantsNeedWater();
-    waterPerPlant = waterAmount / howManyPlantsNeedW;
-    for (Plant plant : plants) {
-      if (plant.needsWater > plant.waterLevel) {
-        plant.waterLevel += waterPerPlant;
+    if (howManyPlantsNeedW != 0) {
+      waterPerPlant = waterAmount / howManyPlantsNeedW;
+      for (Plant plant : plants) {
+        if (plant.needsWater > plant.waterLevel) {
+          plant.waterLevel += waterPerPlant;
+        }
       }
+    }
+    else{
+      System.out.println("No need to water");
     }
 
   }
