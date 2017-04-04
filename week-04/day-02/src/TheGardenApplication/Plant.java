@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Plant {
 
-  int needsWater;
+  double needsWater;
   double waterLevel;
   double waterAbsorv;
   String plantType;
@@ -13,6 +13,7 @@ public class Plant {
 
 
   public Plant() {
+    waterLevel=0;
 
   }
 

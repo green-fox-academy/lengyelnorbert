@@ -32,6 +32,7 @@ public class Garden {
   }
 
   public int howManyPlantsNeedWater() {
+    howManyPlantsNeedW = 0;
     for (Plant plant : plants) {
       if (plant.needsWater > plant.waterLevel) {
         howManyPlantsNeedW++;
@@ -48,17 +49,14 @@ public class Garden {
       waterPerPlant = waterAmount / howManyPlantsNeedW;
       for (Plant plant : plants) {
         if (plant.needsWater > plant.waterLevel) {
-          plant.waterLevel += waterPerPlant;
+          plant.waterLevel += waterPerPlant * plant.waterAbsorv;
+
         }
       }
-    }
-    else{
+    } else {
       System.out.println("No need to water");
     }
-
   }
 
 
 }
-
-
