@@ -14,7 +14,7 @@ class SumTest {
     testList.add(10);
     Sum sum = new Sum();
     assertEquals(15, sum.returnSum(testList));
-
+    assertTrue(15 == sum.returnSum(testList));
   }
 
 }
