@@ -5,8 +5,10 @@ import javax.management.StringValueExp;
 
 
 public class Extension {
+
+
   int add(int a, int b) {
-    int c = a+b;
+    int c = a + b;
     return c;
   }
 
@@ -18,11 +20,11 @@ public class Extension {
 
   int median(List<Integer> pool) {
     Collections.sort(pool);
-    if (pool.size()%2 == 0){
-      int thisMed = (pool.get(pool.size()/2) + pool.get(pool.size()/2-1))/2;
+    if (pool.size() % 2 == 0) {
+      int thisMed = (pool.get(pool.size() / 2) + pool.get(pool.size() / 2 - 1)) / 2;
       return thisMed;
-    }else{
-    return pool.get((pool.size()/2));
+    } else {
+      return pool.get((pool.size() / 2));
     }
   }
 
@@ -32,19 +34,13 @@ public class Extension {
 
   String translate(String hungarian) {
     String teve = hungarian;
-    String tevefull = "";
-    String temp = "";
     int length = teve.length();
     for (int i = 0; i < length; i++) {
       char c = teve.charAt(i);
       if (isVowel(c)) {
-        temp = teve.substring((i), String.valueOf(c));
-
-
-//        teve = String.join(c + "v" + c, teve.split(String.valueOf(c)));
-//        teve = teve.substring(0, i - 1) + c + "v" + c + teve.substring(i + 1);
-//        i+=2;
-//        length+=2;
+        teve = String.join(c + "v" + c, teve.split("" + c));
+        i += 2;
+        length += 2;
       }
     }
     return teve;
