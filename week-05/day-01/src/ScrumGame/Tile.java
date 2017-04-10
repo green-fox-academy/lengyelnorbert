@@ -10,23 +10,27 @@ import java.util.List;
 
 public class Tile extends GameObject {
 
-  boolean isItWall = false;
   List<Tile> tileList;
+  int positionX;
+  int positionY;
+  boolean isItWall;
 
 
-  public Tile() {
+  public Tile(int positionX, int positionY, boolean isItWall) {
     tileList = new ArrayList<>();
+    this.positionX = positionX;
+    this.positionY = positionY;
+    this.isItWall = isItWall;
   }
 
   public void buildTheOriginalMap(Graphics graphics) {
     List<String> mapData = new ArrayList<>();
     char drawFloorOrWall;
-//    int y = 0;
     try {
       Path mapDataFile = Paths.get("assets/map_a.txt");
       mapData = Files.readAllLines(mapDataFile);
     } catch (IOException ex) {
-      System.out.println("error");
+      System.out.println("Error while reading the map file");
     }
     for (int y = 0; y < 10; y++) {
       for (int x = 0; x < 10; x++) {
@@ -34,14 +38,12 @@ public class Tile extends GameObject {
         if (drawFloorOrWall == '1') {
           PositionedImage wallImage = new PositionedImage("assets/wall.png", 72 * x, 72 * y);
           wallImage.draw(graphics);
-          Wall wallPiece = new Wall(x, y);
-          isItWall = true;
+          Tile wallPiece = new Tile(x, y, true);
           tileList.add(wallPiece);
         } else {
           PositionedImage floorImage = new PositionedImage("assets/floor.png", 72 * x, 72 * y);
           floorImage.draw(graphics);
-          Floor floorPiece = new Floor(x, y);
-          isItWall = false;
+          Tile floorPiece = new Tile(x, y, false);
           tileList.add(floorPiece);
         }
       }
