@@ -30,20 +30,17 @@ public class Board extends JComponent implements KeyListener {
     PositionedImage myHeroImage;
     if (lastFacingDirection == 1) {
       myHeroImage = new PositionedImage("assets/hero-up.png", myHeroX, myHeroY);
-      myHeroImage.draw(graphics);
     }
     else if (lastFacingDirection == 3) {
       myHeroImage = new PositionedImage("assets/hero-left.png", myHeroX, myHeroY);
-      myHeroImage.draw(graphics);
     }
     else if (lastFacingDirection == 4) {
       myHeroImage = new PositionedImage("assets/hero-right.png", myHeroX, myHeroY);
-      myHeroImage.draw(graphics);
     }
     else{
       myHeroImage = new PositionedImage("assets/hero-down.png", myHeroX, myHeroY);
-      myHeroImage.draw(graphics);
     }
+    myHeroImage.draw(graphics);
   }
 
   public static void main(String[] args) {

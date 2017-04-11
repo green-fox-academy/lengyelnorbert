@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tile extends GameObject {
-
   List<Tile> tileList;
-  int positionX;
-  int positionY;
+//  int positionX;
+//  int positionY;
   boolean isItWall;
 
 
