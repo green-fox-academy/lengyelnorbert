@@ -1,6 +1,5 @@
 package ScrumGame;
 
-
 import java.util.Random;
 
 public class Boss extends Character {
@@ -16,7 +15,6 @@ public class Boss extends Character {
     }
     positionX = x;
     positionY = y;
+    monsterType = "boss";
   }
 }
-
-

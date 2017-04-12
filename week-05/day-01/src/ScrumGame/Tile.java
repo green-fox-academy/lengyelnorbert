@@ -1,11 +1,5 @@
 package ScrumGame;
 
-import java.awt.Graphics;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Tile extends GameObject {
@@ -18,6 +12,4 @@ public class Tile extends GameObject {
     this.positionY = positionY;
     this.isItWall = isItWall;
   }
-
-
 }

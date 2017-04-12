@@ -1,6 +1,7 @@
 package ScrumGame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,14 +13,15 @@ public class Board extends JComponent implements KeyListener {
   Skeleton skel3;
   Boss boss1;
 
-
   public Board() {
     MapManager.buildTheOriginalMap();
-    myHero = new Hero(0, 0);
-    skel1 = new Skeleton();
-    skel2 = new Skeleton();
-    skel3 = new Skeleton();
-    boss1 = new Boss();
+
+    placingAllTheCharacters();
+//    myHero = new Hero(0, 0);
+//    skel1 = new Skeleton();
+//    skel2 = new Skeleton();
+//    skel3 = new Skeleton();
+//    boss1 = new Boss();
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
   }
@@ -54,7 +56,6 @@ public class Board extends JComponent implements KeyListener {
       myHeroImage = new PositionedImage("assets/hero-down.png", myHero.positionX * 72, myHero.positionY * 72);
     }
     myHeroImage.draw(graphics);
-
   }
 
   public static void main(String[] args) {
@@ -102,5 +103,15 @@ public class Board extends JComponent implements KeyListener {
       }
     }
     repaint();
+  }
+
+  public void placingAllTheCharacters(){
+    myHero = new Hero(0, 0);
+    skel1 = new Skeleton();
+    skel2 = new Skeleton();
+    skel3 = new Skeleton();
+    boss1 = new Boss();
+
+
   }
 }

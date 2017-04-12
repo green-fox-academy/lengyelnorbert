@@ -22,13 +22,9 @@ public class MapManager {
       for (int x = 0; x < 10; x++) {
         drawFloorOrWall = mapData.get(y).charAt(x);
         if (drawFloorOrWall == '1') {
-//          PositionedImage wallImage = new PositionedImage("assets/wall.png", 72 * x, 72 * y);
-//          wallImage.draw(graphics);
           wallPiece = new Tile(x, y, true);
           tileList.add(wallPiece);
         } else {
-//          PositionedImage floorImage = new PositionedImage("assets/floor.png", 72 * x, 72 * y);
-//          floorImage.draw(graphics);
           floorPiece = new Tile(x, y, false);
           tileList.add(floorPiece);
         }
