@@ -14,7 +14,6 @@ public class Tile extends GameObject {
 
 
   public Tile(int positionX, int positionY, boolean isItWall) {
-//    tileList = new ArrayList<>();
     this.positionX = positionX;
     this.positionY = positionY;
     this.isItWall = isItWall;
