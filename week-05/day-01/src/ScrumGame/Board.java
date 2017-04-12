@@ -1,27 +1,25 @@
 package ScrumGame;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.lang.*;
+import java.util.*;
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 
 public class Board extends JComponent implements KeyListener {
+
   Hero myHero;
-  int lastFacingDirection;
-  Skeleton skel1;
-  Skeleton skel2;
-  Skeleton skel3;
+  Skeleton skel1, skel2, skel3;
   Boss boss1;
+  int lastFacingDirection;
+  static List<Character> allTheCharacters;
 
   public Board() {
     MapManager.buildTheOriginalMap();
-
     placingAllTheCharacters();
-//    myHero = new Hero(0, 0);
-//    skel1 = new Skeleton();
-//    skel2 = new Skeleton();
-//    skel3 = new Skeleton();
-//    boss1 = new Boss();
+
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
   }
@@ -32,13 +30,16 @@ public class Board extends JComponent implements KeyListener {
     MapManager.printOutTheOriginalMap(graphics);
 
     PositionedImage skel1Image;
-    skel1Image = new PositionedImage("assets/skeleton.png", skel1.positionX * 72, skel1.positionY * 72);
+    skel1Image = new PositionedImage("assets/skeleton.png", skel1.positionX * 72,
+            skel1.positionY * 72);
     skel1Image.draw(graphics);
     PositionedImage skel2Image;
-    skel2Image = new PositionedImage("assets/skeleton.png", skel2.positionX * 72, skel2.positionY * 72);
+    skel2Image = new PositionedImage("assets/skeleton.png", skel2.positionX * 72,
+            skel2.positionY * 72);
     skel2Image.draw(graphics);
     PositionedImage skel3Image;
-    skel3Image = new PositionedImage("assets/skeleton.png", skel3.positionX * 72, skel3.positionY * 72);
+    skel3Image = new PositionedImage("assets/skeleton.png", skel3.positionX * 72,
+            skel3.positionY * 72);
     skel3Image.draw(graphics);
 
     PositionedImage boss1Image;
@@ -47,13 +48,17 @@ public class Board extends JComponent implements KeyListener {
 
     PositionedImage myHeroImage;
     if (lastFacingDirection == 1) {
-      myHeroImage = new PositionedImage("assets/hero-up.png", myHero.positionX * 72, myHero.positionY * 72);
+      myHeroImage = new PositionedImage("assets/hero-up.png", myHero.positionX * 72,
+              myHero.positionY * 72);
     } else if (lastFacingDirection == 3) {
-      myHeroImage = new PositionedImage("assets/hero-left.png", myHero.positionX * 72, myHero.positionY * 72);
+      myHeroImage = new PositionedImage("assets/hero-left.png", myHero.positionX * 72,
+              myHero.positionY * 72);
     } else if (lastFacingDirection == 4) {
-      myHeroImage = new PositionedImage("assets/hero-right.png", myHero.positionX * 72, myHero.positionY * 72);
+      myHeroImage = new PositionedImage("assets/hero-right.png", myHero.positionX * 72,
+              myHero.positionY * 72);
     } else {
-      myHeroImage = new PositionedImage("assets/hero-down.png", myHero.positionX * 72, myHero.positionY * 72);
+      myHeroImage = new PositionedImage("assets/hero-down.png", myHero.positionX * 72,
+              myHero.positionY * 72);
     }
     myHeroImage.draw(graphics);
   }
@@ -105,13 +110,30 @@ public class Board extends JComponent implements KeyListener {
     repaint();
   }
 
-  public void placingAllTheCharacters(){
-    myHero = new Hero(0, 0);
+  public void placingAllTheCharacters() {
+    allTheCharacters = new ArrayList<>();
+    allTheCharacters.add(myHero = new Hero(0, 0));
     skel1 = new Skeleton();
+    allTheCharacters.add(skel1);
     skel2 = new Skeleton();
+    allTheCharacters.add(skel2);
     skel3 = new Skeleton();
+    allTheCharacters.add(skel3);
     boss1 = new Boss();
+    allTheCharacters.add(boss1);
 
+//    allTheCharacters.add(skel2 = new Skeleton());
+//    allTheCharacters.add(skel3 = new Skeleton());
+//    allTheCharacters.add(boss1 = new Boss());
+  }
 
+  public static boolean isCharacterOnThatTile(int inThatX, int inThatY) {
+    for (Character c : allTheCharacters) {
+      if (c.positionX == inThatX && c.positionY == inThatY) {
+        return true;
+      }
+    }
+    return false;
   }
 }
+
