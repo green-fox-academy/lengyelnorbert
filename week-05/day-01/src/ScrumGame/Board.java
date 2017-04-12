@@ -10,7 +10,7 @@ public class Board extends JComponent implements KeyListener {
   Skeleton skel1;
   Skeleton skel2;
   Skeleton skel3;
-//  List<Skeleton> skeletonList;
+  Boss boss1;
 
 
   public Board() {
@@ -19,6 +19,7 @@ public class Board extends JComponent implements KeyListener {
     skel1 = new Skeleton();
     skel2 = new Skeleton();
     skel3 = new Skeleton();
+    boss1 = new Boss();
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
   }
@@ -26,11 +27,7 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-//    MapManager.buildTheOriginalMap(graphics);
     MapManager.printOutTheOriginalMap(graphics);
-//    skel1 = new Skeleton();
-//    skel2 = new Skeleton();
-//    skel3 = new Skeleton();
 
     PositionedImage skel1Image;
     skel1Image = new PositionedImage("assets/skeleton.png", skel1.positionX * 72, skel1.positionY * 72);
@@ -41,6 +38,10 @@ public class Board extends JComponent implements KeyListener {
     PositionedImage skel3Image;
     skel3Image = new PositionedImage("assets/skeleton.png", skel3.positionX * 72, skel3.positionY * 72);
     skel3Image.draw(graphics);
+
+    PositionedImage boss1Image;
+    boss1Image = new PositionedImage("assets/boss.png", boss1.positionX * 72, boss1.positionY * 72);
+    boss1Image.draw(graphics);
 
     PositionedImage myHeroImage;
     if (lastFacingDirection == 1) {
