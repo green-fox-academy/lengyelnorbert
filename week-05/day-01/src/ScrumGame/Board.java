@@ -1,22 +1,17 @@
 package ScrumGame;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 import java.awt.*;
 
 public class Board extends JComponent implements KeyListener {
-
-  int myHeroX;
-  int myHeroY;
+  Hero myHero;
   int lastFacingDirection;
 
   static Tile tile;
 
   public Board() {
-    myHeroX = 0;
-    myHeroY = 0;
-
+    myHero = new Hero(0, 0);
     setPreferredSize(new Dimension(720, 720));
     setVisible(true);
   }
@@ -24,21 +19,17 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-    tile = new Tile(0, 0, false);
-    tile.buildTheOriginalMap(graphics);
+    MapManager.buildTheOriginalMap(graphics);
 
     PositionedImage myHeroImage;
     if (lastFacingDirection == 1) {
-      myHeroImage = new PositionedImage("assets/hero-up.png", myHeroX, myHeroY);
-    }
-    else if (lastFacingDirection == 3) {
-      myHeroImage = new PositionedImage("assets/hero-left.png", myHeroX, myHeroY);
-    }
-    else if (lastFacingDirection == 4) {
-      myHeroImage = new PositionedImage("assets/hero-right.png", myHeroX, myHeroY);
-    }
-    else{
-      myHeroImage = new PositionedImage("assets/hero-down.png", myHeroX, myHeroY);
+      myHeroImage = new PositionedImage("assets/hero-up.png", myHero.positionX, myHero.positionY);
+    } else if (lastFacingDirection == 3) {
+      myHeroImage = new PositionedImage("assets/hero-left.png", myHero.positionX, myHero.positionY);
+    } else if (lastFacingDirection == 4) {
+      myHeroImage = new PositionedImage("assets/hero-right.png", myHero.positionX, myHero.positionY);
+    } else {
+      myHeroImage = new PositionedImage("assets/hero-down.png", myHero.positionX, myHero.positionY);
     }
     myHeroImage.draw(graphics);
   }
@@ -64,42 +55,29 @@ public class Board extends JComponent implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    int currentX = myHeroX / 72;
-    int currentY = myHeroY / 72;
+    lastFacingDirection = 1;
+    int currentX = myHero.positionX / 72;
+    int currentY = myHero.positionY / 72;
     if (e.getKeyCode() == KeyEvent.VK_UP) {
-      if (checkTileValidStep(currentX, currentY - 1)) {
-        myHeroY -= 72;
-        lastFacingDirection = 1;
+      if (MapManager.checkTileValidStep(currentX, currentY - 1)) {
+        myHero.positionY -= 72;
       }
     } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-      if (checkTileValidStep(currentX, currentY + 1)) {
-        myHeroY += 72;
-        lastFacingDirection = 2;
+      lastFacingDirection = 2;
+      if (MapManager.checkTileValidStep(currentX, currentY + 1)) {
+        myHero.positionY += 72;
       }
     } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      if (checkTileValidStep(currentX - 1, currentY)) {
-        myHeroX -= 72;
-        lastFacingDirection = 3;
+      lastFacingDirection = 3;
+      if (MapManager.checkTileValidStep(currentX - 1, currentY)) {
+        myHero.positionX -= 72;
       }
     } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      if (checkTileValidStep(currentX + 1, currentY)) {
-        myHeroX += 72;
-        lastFacingDirection = 4;
+      lastFacingDirection = 4;
+      if (MapManager.checkTileValidStep(currentX + 1, currentY)) {
+        myHero.positionX += 72;
       }
     }
     repaint();
-  }
-
-  public boolean checkTileValidStep(int toHereX, int toHereY) {
-    for (Tile t : tile.tileList) {
-      if (toHereX == t.positionX && toHereY == t.positionY) {
-        if (t.isItWall) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    }
-    return false;
   }
 }
