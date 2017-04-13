@@ -64,11 +64,12 @@ public class Board extends JComponent implements KeyListener {
     graphics.drawString(skel2.skeletonInfo(), 730, 55);
     graphics.drawString(skel3.skeletonInfo(), 730, 70);
     graphics.drawString(boss1.bossInfo(), 730, 90);
+
     if (isThereMonsterOnThatTile(myHero.positionX, myHero.positionY)) {
-      nnn = "Monster!!! Press Space and start to FIGHT!!!";
+      nnn = "Monster!!! Press Space and fight for your life!!!";
       readyToFight = true;
     } else {
-      nnn = "no monster";
+      nnn = "no monster here...";
       readyToFight = false;
     }
     graphics.drawString(nnn, 730, 130);
@@ -162,22 +163,17 @@ public class Board extends JComponent implements KeyListener {
   }
 
   public static boolean isThereMonsterOnThatTile(int inThatX, int inThatY) {
-    List<Character> allTheMonsters = new ArrayList<>();
     for (Character c : allTheCharacters) {
-      if (c.characterType != "hero") {
-        allTheMonsters.add(c);
-      }
-    }
-    for (Character m : allTheMonsters) {
-      if (m.positionX == inThatX && m.positionY == inThatY) {
+      if (c.characterType != "hero" && c.positionX == inThatX && c.positionY == inThatY) {
         return true;
       }
     }
     return false;
   }
 
+
   public void fightForYourLife() {
-    int indexToRemove =0;
+    int indexToRemove = 0;
     for (int i = 0; i < allTheCharacters.size(); i++) {
       if (allTheCharacters.get(i).characterType != "hero"
               && allTheCharacters.get(i).positionX == myHero.positionX
@@ -204,13 +200,17 @@ public class Board extends JComponent implements KeyListener {
         }
       }
     }
-    if (!myHero.isCharacterAlive){allTheCharacters.remove(myHero);}
-    if (!allTheCharacters.get(indexToRemove).isCharacterAlive){allTheCharacters.remove(indexToRemove);}
+    if (!myHero.isCharacterAlive) {
+      allTheCharacters.remove(myHero);
+    }
+    if (!allTheCharacters.get(indexToRemove).isCharacterAlive) {
+      allTheCharacters.remove(indexToRemove);
+    }
   }
 
-  public void checkForMonstersOnTheLevel(){
-    if (allTheCharacters.size() == 1){
-      theWholeGameLevel ++;
+  public void checkForMonstersOnTheLevel() {
+    if (allTheCharacters.size() == 1) {
+      theWholeGameLevel++;
       placingAllTheCharacters();
     }
   }
