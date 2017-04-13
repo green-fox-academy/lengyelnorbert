@@ -13,7 +13,7 @@ public class Board extends JComponent implements KeyListener {
   Hero myHero;
   Skeleton skel1, skel2, skel3;
   Boss boss1;
-  static int theWholeGameLevel;
+  static int theWholeGameLevel = 1;
   int lastFacingDirection;
   static List<Character> allTheCharacters;
   static boolean readyToFight = false;
@@ -23,7 +23,7 @@ public class Board extends JComponent implements KeyListener {
   public Board() {
     MapManager.buildTheOriginalMap();
     placingAllTheCharacters();
-
+    theWholeGameLevel += 1;
     setPreferredSize(new Dimension(1200, 720));
     setVisible(true);
   }
@@ -89,10 +89,12 @@ public class Board extends JComponent implements KeyListener {
     }
     myHeroImage.draw(graphics);
 
+    checkForMonstersOnTheLevel();
+
   }
 
   public static void main(String[] args) {
-    theWholeGameLevel = 1;
+
     JFrame frame = new JFrame("RPG Game");
     Board board = new Board();
     frame.add(board);
@@ -175,14 +177,41 @@ public class Board extends JComponent implements KeyListener {
   }
 
   public void fightForYourLife() {
+    int indexToRemove =0;
     for (int i = 0; i < allTheCharacters.size(); i++) {
       if (allTheCharacters.get(i).characterType != "hero"
               && allTheCharacters.get(i).positionX == myHero.positionX
               && allTheCharacters.get(i).positionY == myHero.positionY) {
-        allTheCharacters.get(i).isCharacterAlive = false;
-        allTheCharacters.remove(i);
+        indexToRemove = i;
+        while (myHero.isCharacterAlive && allTheCharacters.get(i).isCharacterAlive) {
+          int myHeroAttack = myHero.strikeValue();
+          int monsterAttack = allTheCharacters.get(i).strikeValue();
+          if (myHeroAttack > allTheCharacters.get(i).characterDefendPoints) {
+            allTheCharacters.get(i).characterCurrentHP -=
+                    myHeroAttack - allTheCharacters.get(i).characterDefendPoints;
+            if (allTheCharacters.get(i).characterCurrentHP <= 0) {
+              allTheCharacters.get(i).isCharacterAlive = false;
+            }
+          }
+          if (monsterAttack > myHero.characterDefendPoints && allTheCharacters
+                  .get(i).isCharacterAlive) {
+            myHero.characterCurrentHP -= monsterAttack - myHero.characterDefendPoints;
+          }
+          if (myHero.characterCurrentHP <= 0) {
+            myHero.isCharacterAlive = false;
+            System.exit(0);
+          }
+        }
       }
+    }
+    if (!myHero.isCharacterAlive){allTheCharacters.remove(myHero);}
+    if (!allTheCharacters.get(indexToRemove).isCharacterAlive){allTheCharacters.remove(indexToRemove);}
+  }
+
+  public void checkForMonstersOnTheLevel(){
+    if (allTheCharacters.size() == 1){
+      theWholeGameLevel ++;
+      placingAllTheCharacters();
     }
   }
 }
-

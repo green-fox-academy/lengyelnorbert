@@ -12,6 +12,10 @@ public class Character extends GameObject {
   int characterStrikePoints;
   boolean isCharacterAlive;
 
+  public Character(){
+    characterLevel = Board.theWholeGameLevel;
+  }
+
 
   public static int rollTheDice(int howManyTimeRollTheDice) {
     int finalAmountOfDiceRolls = 0;
@@ -21,5 +25,10 @@ public class Character extends GameObject {
       finalAmountOfDiceRolls += n;
     }
     return finalAmountOfDiceRolls;
+  }
+
+  public int strikeValue(){
+    int sv = this.characterStrikePoints + 2 * rollTheDice(1);
+    return sv;
   }
 }
