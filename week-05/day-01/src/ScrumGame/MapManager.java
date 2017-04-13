@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapManager {
-
   static List<Tile> tileList = new ArrayList<>();
+
 
   public static void buildTheOriginalMap() {
     List<String> mapData;
@@ -18,7 +18,7 @@ public class MapManager {
     Tile floorPiece;
     mapData = fileReading();
     char drawFloorOrWall;
-    for (int y = 0; y < 2; y++) {
+    for (int y = 0; y < 10; y++) {
       for (int x = 0; x < 10; x++) {
         drawFloorOrWall = mapData.get(y).charAt(x);
         if (drawFloorOrWall == '1') {

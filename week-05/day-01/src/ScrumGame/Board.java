@@ -13,6 +13,7 @@ public class Board extends JComponent implements KeyListener {
   Hero myHero;
   Skeleton skel1, skel2, skel3;
   Boss boss1;
+  static int theWholeGameLevel;
   int lastFacingDirection;
   static List<Character> allTheCharacters;
 
@@ -20,7 +21,7 @@ public class Board extends JComponent implements KeyListener {
     MapManager.buildTheOriginalMap();
     placingAllTheCharacters();
 
-    setPreferredSize(new Dimension(720, 720));
+    setPreferredSize(new Dimension(1200, 720));
     setVisible(true);
   }
 
@@ -46,6 +47,8 @@ public class Board extends JComponent implements KeyListener {
     boss1Image = new PositionedImage("assets/boss.png", boss1.positionX * 72, boss1.positionY * 72);
     boss1Image.draw(graphics);
 
+    graphics.drawString(myHero.heroInfo(), 730, 25);
+
     PositionedImage myHeroImage;
     if (lastFacingDirection == 1) {
       myHeroImage = new PositionedImage("assets/hero-up.png", myHero.positionX * 72,
@@ -64,7 +67,7 @@ public class Board extends JComponent implements KeyListener {
   }
 
   public static void main(String[] args) {
-    // Here is how you set up a new window and adding our board to it
+    theWholeGameLevel = 0;
     JFrame frame = new JFrame("RPG Game");
     Board board = new Board();
     frame.add(board);
@@ -73,7 +76,6 @@ public class Board extends JComponent implements KeyListener {
     frame.pack();
     frame.addKeyListener(board);
   }
-
   @Override
   public void keyTyped(KeyEvent e) {
   }
@@ -113,18 +115,10 @@ public class Board extends JComponent implements KeyListener {
   public void placingAllTheCharacters() {
     allTheCharacters = new ArrayList<>();
     allTheCharacters.add(myHero = new Hero(0, 0));
-    skel1 = new Skeleton();
-    allTheCharacters.add(skel1);
-    skel2 = new Skeleton();
-    allTheCharacters.add(skel2);
-    skel3 = new Skeleton();
-    allTheCharacters.add(skel3);
-    boss1 = new Boss();
-    allTheCharacters.add(boss1);
-
-//    allTheCharacters.add(skel2 = new Skeleton());
-//    allTheCharacters.add(skel3 = new Skeleton());
-//    allTheCharacters.add(boss1 = new Boss());
+    allTheCharacters.add(skel1 = new Skeleton());
+    allTheCharacters.add(skel2 = new Skeleton());
+    allTheCharacters.add(skel3 = new Skeleton());
+    allTheCharacters.add(boss1 = new Boss());
   }
 
   public static boolean isCharacterOnThatTile(int inThatX, int inThatY) {

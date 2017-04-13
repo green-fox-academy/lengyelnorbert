@@ -15,6 +15,10 @@ public class Skeleton extends Character {
     }
     positionX = x;
     positionY = y;
-    monsterType = "skeleton";
+    characterType = "skeleton";
+
   }
 }
+HP: 2 * x * d6 (+d6)
+        DP: x/2 * d6 (+d6/2)
+        SP: x * d6 (+x)

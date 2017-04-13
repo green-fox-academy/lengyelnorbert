@@ -15,6 +15,6 @@ public class Boss extends Character {
     }
     positionX = x;
     positionY = y;
-    monsterType = "boss";
+    characterType = "boss";
   }
 }
