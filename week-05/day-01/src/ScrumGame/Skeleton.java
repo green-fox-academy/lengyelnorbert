@@ -16,9 +16,14 @@ public class Skeleton extends Character {
     positionX = x;
     positionY = y;
     characterType = "skeleton";
+    this.isCharacterAlive = true;
+    this.characterCurrentHP =
+            2 * Board.theWholeGameLevel * Character.rollTheDice(1);
+    this.characterDefendPoints = (int)((double)Board.theWholeGameLevel / 2 * Character.rollTheDice(1));
+    this.characterStrikePoints = Board.theWholeGameLevel * Character.rollTheDice(1);
+  }
 
+  public String skeletonInfo() {
+    return this.characterType + " HP: " + this.characterCurrentHP + " | DP: " + this.characterDefendPoints + " | SP " + this.characterStrikePoints;
   }
 }
-HP: 2 * x * d6 (+d6)
-        DP: x/2 * d6 (+d6/2)
-        SP: x * d6 (+x)

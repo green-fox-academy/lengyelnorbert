@@ -16,6 +16,9 @@ public class Board extends JComponent implements KeyListener {
   static int theWholeGameLevel;
   int lastFacingDirection;
   static List<Character> allTheCharacters;
+  static boolean readyToFight = false;
+  String nnn;
+
 
   public Board() {
     MapManager.buildTheOriginalMap();
@@ -30,24 +33,45 @@ public class Board extends JComponent implements KeyListener {
     super.paint(graphics);
     MapManager.printOutTheOriginalMap(graphics);
 
-    PositionedImage skel1Image;
-    skel1Image = new PositionedImage("assets/skeleton.png", skel1.positionX * 72,
-            skel1.positionY * 72);
-    skel1Image.draw(graphics);
-    PositionedImage skel2Image;
-    skel2Image = new PositionedImage("assets/skeleton.png", skel2.positionX * 72,
-            skel2.positionY * 72);
-    skel2Image.draw(graphics);
-    PositionedImage skel3Image;
-    skel3Image = new PositionedImage("assets/skeleton.png", skel3.positionX * 72,
-            skel3.positionY * 72);
-    skel3Image.draw(graphics);
+    if (skel1.isCharacterAlive) {
+      PositionedImage skel1Image;
+      skel1Image = new PositionedImage("assets/skeleton.png", skel1.positionX * 72,
+              skel1.positionY * 72);
+      skel1Image.draw(graphics);
+    }
+    if (skel2.isCharacterAlive) {
+      PositionedImage skel2Image;
+      skel2Image = new PositionedImage("assets/skeleton.png", skel2.positionX * 72,
+              skel2.positionY * 72);
+      skel2Image.draw(graphics);
+    }
+    if (skel3.isCharacterAlive) {
+      PositionedImage skel3Image;
+      skel3Image = new PositionedImage("assets/skeleton.png", skel3.positionX * 72,
+              skel3.positionY * 72);
+      skel3Image.draw(graphics);
+    }
 
-    PositionedImage boss1Image;
-    boss1Image = new PositionedImage("assets/boss.png", boss1.positionX * 72, boss1.positionY * 72);
-    boss1Image.draw(graphics);
+    if (boss1.isCharacterAlive) {
+      PositionedImage boss1Image;
+      boss1Image = new PositionedImage("assets/boss.png", boss1.positionX * 72,
+              boss1.positionY * 72);
+      boss1Image.draw(graphics);
+    }
 
-    graphics.drawString(myHero.heroInfo(), 730, 25);
+    graphics.drawString(myHero.heroInfo(), 730, 20);
+    graphics.drawString(skel1.skeletonInfo(), 730, 40);
+    graphics.drawString(skel2.skeletonInfo(), 730, 55);
+    graphics.drawString(skel3.skeletonInfo(), 730, 70);
+    graphics.drawString(boss1.bossInfo(), 730, 90);
+    if (isThereMonsterOnThatTile(myHero.positionX, myHero.positionY)) {
+      nnn = "Monster!!! Press Space and start to FIGHT!!!";
+      readyToFight = true;
+    } else {
+      nnn = "no monster";
+      readyToFight = false;
+    }
+    graphics.drawString(nnn, 730, 130);
 
     PositionedImage myHeroImage;
     if (lastFacingDirection == 1) {
@@ -64,10 +88,11 @@ public class Board extends JComponent implements KeyListener {
               myHero.positionY * 72);
     }
     myHeroImage.draw(graphics);
+
   }
 
   public static void main(String[] args) {
-    theWholeGameLevel = 0;
+    theWholeGameLevel = 1;
     JFrame frame = new JFrame("RPG Game");
     Board board = new Board();
     frame.add(board);
@@ -76,6 +101,7 @@ public class Board extends JComponent implements KeyListener {
     frame.pack();
     frame.addKeyListener(board);
   }
+
   @Override
   public void keyTyped(KeyEvent e) {
   }
@@ -89,7 +115,9 @@ public class Board extends JComponent implements KeyListener {
     lastFacingDirection = 1;
     int currentX = myHero.positionX;
     int currentY = myHero.positionY;
-    if (e.getKeyCode() == KeyEvent.VK_UP) {
+    if (e.getKeyCode() == KeyEvent.VK_SPACE && (readyToFight)) {
+      fightForYourLife();
+    } else if (e.getKeyCode() == KeyEvent.VK_UP) {
       if (MapManager.checkTileValidStep(currentX, currentY - 1)) {
         myHero.positionY -= 1;
       }
@@ -112,6 +140,7 @@ public class Board extends JComponent implements KeyListener {
     repaint();
   }
 
+
   public void placingAllTheCharacters() {
     allTheCharacters = new ArrayList<>();
     allTheCharacters.add(myHero = new Hero(0, 0));
@@ -128,6 +157,32 @@ public class Board extends JComponent implements KeyListener {
       }
     }
     return false;
+  }
+
+  public static boolean isThereMonsterOnThatTile(int inThatX, int inThatY) {
+    List<Character> allTheMonsters = new ArrayList<>();
+    for (Character c : allTheCharacters) {
+      if (c.characterType != "hero") {
+        allTheMonsters.add(c);
+      }
+    }
+    for (Character m : allTheMonsters) {
+      if (m.positionX == inThatX && m.positionY == inThatY) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void fightForYourLife() {
+    for (int i = 0; i < allTheCharacters.size(); i++) {
+      if (allTheCharacters.get(i).characterType != "hero"
+              && allTheCharacters.get(i).positionX == myHero.positionX
+              && allTheCharacters.get(i).positionY == myHero.positionY) {
+        allTheCharacters.get(i).isCharacterAlive = false;
+        allTheCharacters.remove(i);
+      }
+    }
   }
 }
 

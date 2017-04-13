@@ -16,5 +16,16 @@ public class Boss extends Character {
     positionX = x;
     positionY = y;
     characterType = "boss";
+    this.isCharacterAlive = true;
+    this.characterCurrentHP =
+            2 * Board.theWholeGameLevel * Character.rollTheDice(1) + Character.rollTheDice(1);
+    this.characterDefendPoints = (int) ((double) Board.theWholeGameLevel / 2 * Character
+            .rollTheDice(1))  + (Character.rollTheDice(1) / 2);
+    this.characterStrikePoints = Board.theWholeGameLevel * Character.rollTheDice(1) + Board.theWholeGameLevel;
+  }
+
+  public String bossInfo() {
+    return this.characterType + " HP: " + this.characterCurrentHP + " | DP: "
+            + this.characterDefendPoints + " | SP " + this.characterStrikePoints;
   }
 }

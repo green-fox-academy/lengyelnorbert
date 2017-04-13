@@ -10,6 +10,7 @@ public class Character extends GameObject {
   int characterCurrentHP;
   int characterDefendPoints;
   int characterStrikePoints;
+  boolean isCharacterAlive;
 
 
   public static int rollTheDice(int howManyTimeRollTheDice) {
