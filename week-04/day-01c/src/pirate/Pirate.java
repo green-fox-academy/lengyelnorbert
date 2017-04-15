@@ -1,21 +1,21 @@
 package pirate;
 
-import java.util.Random;
-
 class Pirate {
 
   private int pirotDrunkness;
-  private boolean isPirotAlive;
+  private boolean isAlive;
+  private boolean isPassedOut;
 
 
   Pirate() {
-    isPirotAlive = true;
+    isAlive = true;
+    isPassedOut = false;
     pirotDrunkness = 0;
   }
 
 
   void drinkSomeRum() {
-    if (isPirotAlive) {
+    if (isAlive) {
       pirotDrunkness++;
     } else {
       System.out.println("he's dead");
@@ -24,7 +24,7 @@ class Pirate {
 
   String howsItGoingMate() {
     String pirateAnswer;
-    if (isPirotAlive) {
+    if (isAlive) {
       pirateAnswer = pirotDrunkness < 5 ? "Pour me anudder!"
               : "Arghh, I'ma Pirate. How d'ya d'ink its goin?";
       System.out.println(pirateAnswer);
@@ -35,15 +35,33 @@ class Pirate {
   }
 
   void die() {
-    isPirotAlive = false;
+    isAlive = false;
   }
 
-  void brawl(Pirate pirateToFigthAgainst){
-    Random rn = new Random();
-    int randomnumber = rn.nextInt(3) + 1;
-    if (randomnumber == 1){
-      
-    }
+  void setPassedOut() {
+    isPassedOut = true;
+  }
 
+  void brawl(Pirate anotherPirate) {
+    if (!isAlive) {
+      System.out.println("he's dead");
+    } else if (!anotherPirate.isAlive) {
+      System.out.println("you can not figth against a dead pirate!");
+    } else {
+      // outcome: what happens:
+      // 1- this Pirate dies,
+      // 2- the other Pirate dies,
+      // 3 - both pass out
+      int outcome = (int) (Math.random() * 3) + 1;
+      if (outcome == 1) {
+        die();
+      } else if (outcome == 2) {
+        anotherPirate.die();
+      } else {
+        setPassedOut();
+        anotherPirate.setPassedOut();
+      }
+    }
   }
 }
+
