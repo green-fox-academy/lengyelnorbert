@@ -2,21 +2,29 @@ package pirate;
 
 class Pirate {
 
-  private int pirotDrunkness;
+  private int pirateDrunkness;
   private boolean isAlive;
   private boolean isPassedOut;
-
+  private int pirateID;
 
   Pirate() {
     isAlive = true;
     isPassedOut = false;
-    pirotDrunkness = 0;
+    pirateDrunkness = 0;
+  }
+
+  public int getPirateID() {
+    return pirateID;
+  }
+
+  public void setPirateID(int pirateID) {
+    this.pirateID = pirateID;
   }
 
 
   void drinkSomeRum() {
     if (isAlive) {
-      pirotDrunkness++;
+      pirateDrunkness++;
     } else {
       System.out.println("he's dead");
     }
@@ -25,7 +33,7 @@ class Pirate {
   String howsItGoingMate() {
     String pirateAnswer;
     if (isAlive) {
-      pirateAnswer = pirotDrunkness < 5 ? "Pour me anudder!"
+      pirateAnswer = pirateDrunkness < 5 ? "Pour me anudder!"
               : "Arghh, I'ma Pirate. How d'ya d'ink its goin?";
       System.out.println(pirateAnswer);
     } else {
