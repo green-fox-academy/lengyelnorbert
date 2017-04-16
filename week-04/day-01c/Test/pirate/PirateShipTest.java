@@ -13,4 +13,12 @@ class PirateShipTest {
     System.out.println(testShip.crew.size());
   }
 
+  @Test
+  void getShipInfo(){
+    PirateShip testShip = new PirateShip();
+    testShip.fillShip();
+    System.out.println(testShip.getShipInfo());
+    assertEquals("", testShip.getShipInfo());
+  }
+
 }
