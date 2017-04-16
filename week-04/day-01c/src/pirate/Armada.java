@@ -47,7 +47,6 @@ public class Armada {
     } else {
       return true;
     }
-
   }
 
   void fightInfoBeforeFight(Armada otherArmada, PirateShip thisArmadaPirateShip,
@@ -66,5 +65,4 @@ public class Armada {
     System.out.println();
 
   }
-
 }
