@@ -11,7 +11,5 @@ public class Main {
     System.out.println(testString.charAt(3));
     System.out.println(testString.toString());
 
-
   }
-
 }
