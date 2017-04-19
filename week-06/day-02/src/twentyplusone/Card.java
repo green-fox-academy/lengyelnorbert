@@ -13,13 +13,13 @@ public class Card {
     if (suit == Suit.CLUBS || suit == Suit.SPADES) {
       color = Color.BLACK;
     }
-    if (suit == Suit.DIAMONDS || suit == Suit.HEARTS){
+    if (suit == Suit.DIAMONDS || suit == Suit.HEARTS) {
       color = Color.RED;
     }
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     String returnString = rank.getCardValueString() + "-" + suit;
     return returnString;
   }

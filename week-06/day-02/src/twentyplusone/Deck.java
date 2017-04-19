@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Deck {
 
-  List<Card> deck;
+  static List<Card> deck;
 
   Deck(int howManyDecksYouWishToPlayWith) {
     deck = new ArrayList<>();

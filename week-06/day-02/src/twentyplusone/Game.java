@@ -5,9 +5,8 @@ import java.util.Scanner;
 
 public class Game {
 
-  int playersCardValue;
-  int dealersCardValue;
-
+  static int playersCardValue;
+  static int dealersCardValue;
 
 
   public static void main(String[] args) {
@@ -15,7 +14,7 @@ public class Game {
     Deck newDeck = new Deck(1);
     System.out.println(newDeck);
 
-    
+    newDeck.pullRandom();
 
 
   }
@@ -48,7 +47,7 @@ public class Game {
     return dealersCardValue;
   }
 
-  public int randomCardForThePlayer(){
+  public int randomCardForThePlayer() {
 
   }
 
