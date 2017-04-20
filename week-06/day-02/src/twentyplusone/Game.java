@@ -47,9 +47,9 @@ public class Game {
     return dealersCardValue;
   }
 
-  public int randomCardForThePlayer() {
-
-  }
+//  public int randomCardForThePlayer() {
+//
+//  }
 
 //  public void pullingCardsForTestin(Deck newDeck) {
 //    int counter = 0;
