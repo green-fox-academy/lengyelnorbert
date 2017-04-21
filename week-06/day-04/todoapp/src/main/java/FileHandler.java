@@ -3,15 +3,14 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fileHandler {
+public class FileHandler {
 
   public static boolean isTodoFileExist() {
     try {
-      File f = new File(todo.getTodosFilePlace());
+      File f = new File(Main.getTodoFilePlace());
       if (!f.exists()) {
         System.out.println("This todo file did not exist");
         return false;
@@ -27,7 +26,7 @@ public class fileHandler {
 
   public static void createTodoFile() {
     try {
-      File f = new File(todo.getTodosFilePlace());
+      File f = new File(Main.getTodoFilePlace());
       f.createNewFile();
       System.out.println("This todo file has just been created");
     } catch (Exception e) {
@@ -36,10 +35,10 @@ public class fileHandler {
     }
   }
 
-  public static List<String[]> readTodoFile(String todosFilePlace){
+  public static List<String[]> readAndReturnDataFromFile(String fileToReadPlace){
     List<String[]> dataFromFile = new ArrayList<>();
     try {
-      CSVReader reader = new CSVReader(new FileReader(todosFilePlace), ';');
+      CSVReader reader = new CSVReader(new FileReader(fileToReadPlace), ';');
       dataFromFile = reader.readAll();
     }catch (Exception e) {
       System.out.println("Error during reading the file");
@@ -48,15 +47,30 @@ public class fileHandler {
     return dataFromFile;
   }
 
-  public static void writeTodoFile (String todosFilePlace, List<String[]> dataToWrite){
+  public static void writeDataToFile(String fileToWritePlace, List<String[]> dataToWrite){
     try {
-      CSVWriter writer = new CSVWriter(new FileWriter(todosFilePlace), ';',
+      CSVWriter writer = new CSVWriter(new FileWriter(fileToWritePlace), ';',
               CSVWriter.NO_QUOTE_CHARACTER);
       writer.writeAll(dataToWrite);
       writer.close();
     }catch (Exception e) {
       System.out.println("Error during writing the file");
       e.printStackTrace();
+    }
+  }
+
+  public static void checkIfFileExist() {
+    if (!FileHandler.isTodoFileExist()) {
+      FileHandler.createTodoFile();
+    }
+  }
+
+  public static void showInfoMessage(String infoFilePlace) {
+    List<String[]> readFile = FileHandler.readAndReturnDataFromFile(infoFilePlace);
+    for (String[] string : readFile) {
+      for (int i = 0; i < string.length; i++) {
+        System.out.println(string[i]);
+      }
     }
   }
 }

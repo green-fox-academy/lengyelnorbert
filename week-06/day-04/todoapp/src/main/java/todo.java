@@ -1,40 +1,32 @@
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
 
-public class todo {
-  private static List<todos> todosList;
-  private static String todosFilePlace = "src/main/java/todos.csv";
-  private static String infoFilePlace =
+public class Todo {
+  private int todoID;
+  private static int todoRunningID =1;
+  private String todoTaskText;
+  private LocalDate createdAt;
+  private LocalDate completedAt;
+  private Time timeNeededToCompleteTheTask;
+  private boolean taskIsDone = false;
+  private final String UNDONE = "[ ]";
+  private final String DONE = "[X]";
 
-
-  public static void main(String[] args) {
-
-    checkIfFileExist();
-
-    OptionParser parser = new OptionParser();
-    parser.accepts("l");
-    parser.accepts("a").withRequiredArg();
-    OptionSet options = parser.parse(args);
-
-    if (options.has("a")) {
-      System.out.println("`-a` was given with the argument " + options.valueOf("a"));
-
-    }
-
-    if (options.has("l")) {
-      System.out.println("`-l` was given with the no additional information.");
-    }
+  Todo(String todoTaskText){
+    this.todoTaskText = todoTaskText;
+    todoID = todoRunningID;
+    todoRunningID++;
+    taskIsDone = false;
+    createdAt = getNowDateAndTime();
   }
 
-
-  public static String getTodosFilePlace() {
-    return todosFilePlace;
-  }
-
-  public static void checkIfFileExist(){
-    if (!fileHandler.isTodoFileExist()){
-      fileHandler.createTodoFile();
-    }
+  private LocalDate getNowDateAndTime(){
+    LocalDate rightNow = LocalDate.now();
+    return rightNow;
   }
 }
+
+
+
+
