@@ -59,12 +59,6 @@ public class FileHandler {
     }
   }
 
-  public static void checkIfFileExist() {
-    if (!FileHandler.isTodoFileExist()) {
-      FileHandler.createTodoFile();
-    }
-  }
-
   public static void showInfoMessage(String infoFilePlace) {
     List<String[]> readFile = FileHandler.readAndReturnDataFromFile(infoFilePlace);
     for (String[] string : readFile) {
