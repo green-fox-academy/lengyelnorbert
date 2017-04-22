@@ -24,11 +24,11 @@ public class Reservation implements Reservationy {
 
   @Override
   public String toString() {
-    return null;
+    return String.format("Booking# %s for %s", getCodeBooking(), getDowBooking());
   }
 
   String randomGenerator(int amountToRandomize, List<String> stringToGetRandomElementFrom){
-    String stringToReturn = null;
+    String stringToReturn = "";
     for (int i = 0; i < amountToRandomize; i++) {
       int randomIndex = new Random().nextInt(stringToGetRandomElementFrom.size());
       stringToReturn += stringToGetRandomElementFrom.get(randomIndex);
