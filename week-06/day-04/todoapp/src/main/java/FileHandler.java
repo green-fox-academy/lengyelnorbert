@@ -59,8 +59,8 @@ public class FileHandler {
     }
   }
 
-  public static void showInfoMessage(String infoFilePlace) {
-    List<String[]> readFile = FileHandler.readAndReturnDataFromFile(infoFilePlace);
+  public static void showInfoMessage() {
+    List<String[]> readFile = FileHandler.readAndReturnDataFromFile(Main.getInfoFilePlace());
     for (String[] string : readFile) {
       for (int i = 0; i < string.length; i++) {
         System.out.println(string[i]);
