@@ -55,7 +55,7 @@ public class Main {
     carOccurenceList.add(whlada);
 
     int result = Collections.max(carOccurenceList);
-    System.out.println("The most commen vehicle: ");
+    System.out.println("The most commen vehicle: " );
     if (result == bltrab) {
       System.out.println(bltrabs + bltrab);
     } else if (result == whtrab + whtrab) {
