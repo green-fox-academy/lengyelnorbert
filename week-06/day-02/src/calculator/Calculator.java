@@ -25,18 +25,21 @@ public class Calculator {
 
   static <T extends Number> double multiply(T... numbers) {
     double result = numbers[0].doubleValue();
-    for (int i = 1; i < numbers.length ; i++) {
+    for (int i = 1; i < numbers.length; i++) {
       result *= numbers[i].doubleValue();
     }
     return result;
   }
 
   static <T extends Number> double divide(T first, T second) {
-    double result =0;
-    try {
-      result = first.doubleValue() / second.doubleValue();
-    }catch (Exception e){
-      System.out.println("error");
-    }return result;
+    double result = 0;
+    if (first.doubleValue() != 0 && second.doubleValue() != 0) {
+      try {
+        result = first.doubleValue() / second.doubleValue();
+      } catch (Exception e) {
+        System.out.println("error");
+      }
+    }
+    return result;
   }
 }
