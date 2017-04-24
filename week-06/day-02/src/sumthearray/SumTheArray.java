@@ -26,10 +26,9 @@ public class SumTheArray {
         sum += temp.doubleValue();
       }
     } catch (IndexOutOfBoundsException e) {
-      System.out.println("Given index is out of bound");
-      throw new Exception("error message to throw");
+      throw new Exception("Given index is out of bound / error message to throw");
     } catch (Exception e) {
-      System.out.println("error... I cannot do it...");
+      System.out.println("other error... I cannot do it...");
     }
     return sum;
   }
