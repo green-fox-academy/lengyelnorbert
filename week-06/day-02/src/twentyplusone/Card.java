@@ -6,7 +6,6 @@ public class Card {
   Suit suit;
   Rank rank;
 
-
   Card(Suit suit, Rank rank) {
     this.suit = suit;
     this.rank = rank;
@@ -20,13 +19,6 @@ public class Card {
 
   @Override
   public String toString() {
-    String returnString = rank.getCardValueString() + "-" + suit;
-    return returnString;
+    return rank.getCardValueString() + "-" + suit;
   }
-
 }
-
-
-
-
-

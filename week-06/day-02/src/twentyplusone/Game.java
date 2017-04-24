@@ -7,65 +7,74 @@ public class Game {
 
   static int playersCardValue;
   static int dealersCardValue;
+  static boolean isGameRunning = true;
+  static Deck newDeck;
 
 
   public static void main(String[] args) {
 
-    Deck newDeck = new Deck(1);
+    gameInitialSetup();
+    gameRun();
+  }
+
+  public static void gameInitialSetup() {
+    newDeck = new Deck(1);
     System.out.println(newDeck);
 
-    newDeck.pullRandom();
+    dealersCardValue = randomNumberForTheDealer();
+    System.out.println("Dealer stands on:" + dealersCardValue);
 
+    playersCardValue += newDeck.pullRandom();
+    playersCardValue += newDeck.pullRandom();
 
+    System.out.println(playersCardValue);
   }
 
-
-  public boolean doesTheUserWantToPlay(int dealersCardValue, int playersFirstTwoCardsValue) {
-    System.out.println(
-            "Dealers cards value: " + dealersCardValue + ". Your first two cards value: "
-                    + playersFirstTwoCardsValue + " Would you like to play (yes / no)");
-    Scanner scanner = new Scanner(System.in);
-    try {
-      String userInput = scanner.nextLine();
-      if (userInput.toLowerCase().equals("yes")) {
-        return true;
-      } else if (userInput.toLowerCase().equals("no")) {
-        return false;
-      } else {
-        System.out.println("I don't understand you... Try it again pls");
-        doesTheUserWantToPlay(dealersCardValue, playersFirstTwoCardsValue);
+  public static void gameRun() {
+    while (isGameRunning) {
+      System.out.println(
+              "Dealers cards value: " + dealersCardValue + " Your cards value: " + playersCardValue
+                      + " Would you like to play (yes / no)");
+      Scanner scanner = new Scanner(System.in);
+      try {
+        String userInput = scanner.nextLine();
+        if (userInput.toLowerCase().equals("yes")) {
+          playersCardValue += newDeck.pullRandom();
+          userCardValueStillValid();
+        } else if (userInput.toLowerCase().equals("no")) {
+          userFinishedCheckTheCards();
+        } else {
+          System.out.println("I don't understand you... Try it again pls");
+        }
+      } catch (InputMismatchException e) {
+        System.out.println("Wrong answer, please try it again");
+        gameRun();
       }
-    } catch (InputMismatchException e) {
-      System.out.println("Wrong answer, please try it again");
-      doesTheUserWantToPlay(dealersCardValue, playersFirstTwoCardsValue);
     }
-    return false;
   }
 
-  public int randomNumberForTheDealer() {
+  public static int randomNumberForTheDealer() {
     dealersCardValue = (int) ((Math.random() * 7) + 15);
     return dealersCardValue;
   }
 
-//  public int randomCardForThePlayer() {
-//
-//  }
+  public static void userCardValueStillValid() {
+    if (playersCardValue > 21) {
+      System.out.println("Too much...");
+      isGameRunning = false;
+    }
+  }
 
-//  public void pullingCardsForTestin(Deck newDeck) {
-//    int counter = 0;
-//
-//    newDeck.shuffle();
-//    System.out.println(newDeck);
-//    newDeck.pullFirst();
-//    System.out.println(newDeck);
-//    newDeck.pullLast();
-//    System.out.println(newDeck);
-//
-//    while (newDeck.deck.size() > 0) {
-//      System.out.println(counter++);
-//      newDeck.pullRandom();
-//      System.out.println(newDeck);
-//
-//    }
-//  }
+  public static void userFinishedCheckTheCards() {
+    if (playersCardValue > dealersCardValue) {
+      System.out.println("you won!");
+      isGameRunning = false;
+    } else if (playersCardValue == dealersCardValue) {
+      System.out.println("draw");
+      isGameRunning = false;
+    } else {
+      System.out.println("oh-oh... not enough...");
+      isGameRunning = false;
+    }
+  }
 }

@@ -24,31 +24,30 @@ public class Deck {
     }
   }
 
-  public void shuffle(){
+  public void shuffle() {
     System.out.println("Shuffling...");
     Collections.shuffle(deck);
   }
 
-  public void pullFirst(){
+  public void pullFirst() {
     System.out.println("Pulling the first card... ");
     Card pulledCard = deck.get(0);
     System.out.println(pulledCard);
     deck.remove(0);
   }
 
-  public void pullLast(){
+  public void pullLast() {
     System.out.println("Pulling the last card... ");
-    Card pulledCard = deck.get(deck.size()-1);
+    Card pulledCard = deck.get(deck.size() - 1);
     System.out.println(pulledCard);
-    deck.remove(deck.size()-1);
+    deck.remove(deck.size() - 1);
   }
 
-  public int pullRandom(){
-    System.out.println("Pulling random card... ");
+  public int pullRandom() {
     int randomCard = (int) (Math.random() * deck.size());
     Card pulledCard = deck.get(randomCard);
     int pulledCardValue = pulledCard.rank.getCardValue();
-    System.out.println(pulledCard);
+    System.out.println("Pulling random card... " + pulledCard);
     deck.remove(randomCard);
     return pulledCardValue;
   }
@@ -59,6 +58,6 @@ public class Deck {
     for (Card card : deck) {
       returnString += card.toString() + " | ";
     }
-    return  returnString + "\n";
+    return returnString + "\n";
   }
 }
