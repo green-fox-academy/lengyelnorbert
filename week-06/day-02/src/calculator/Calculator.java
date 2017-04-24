@@ -12,21 +12,36 @@ public class Calculator {
 
   static <T extends Number> double add(T... numbers) {
     double sum = 0;
-    for (int i = 0; i < numbers.length; i++) {
-      T temp = numbers[i];
-      sum += temp.doubleValue();
+    try {
+      for (int i = 0; i < numbers.length; i++) {
+        T temp = numbers[i];
+        sum += temp.doubleValue();
+      }
+    } catch (Exception e) {
+      System.out.println("error: " + e.getMessage());
     }
     return sum;
   }
 
   static <T extends Number> double deduct(T first, T second) {
-    return first.doubleValue() - second.doubleValue();
+    double result = 0;
+    try {
+      result = first.doubleValue() - second.doubleValue();
+    } catch (Exception e) {
+      System.out.println("error: " + e.getMessage());
+    }
+    return result;
   }
 
   static <T extends Number> double multiply(T... numbers) {
-    double result = numbers[0].doubleValue();
-    for (int i = 1; i < numbers.length; i++) {
-      result *= numbers[i].doubleValue();
+    double result = 0;
+    try {
+      result = numbers[0].doubleValue();
+      for (int i = 1; i < numbers.length; i++) {
+        result *= numbers[i].doubleValue();
+      }
+    } catch (Exception e) {
+      System.out.println("error: " + e.getMessage());
     }
     return result;
   }
