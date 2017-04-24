@@ -16,7 +16,7 @@ public class sortTheArray {
     descendingSort(doubleArray);
 
     System.out.println("\nArray characterArray contains:");
-    descendingSort(charArray);  
+    descendingSort(charArray);
   }
 
   public static <T> void descendingSort(T[] arrayToSort) {
