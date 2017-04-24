@@ -6,18 +6,31 @@ public class SumTheArray {
     Integer[] intArray = {33, 55, 1, 2, 3, 4, 5};
     Double[] doubleArray = {1.1, 2.2, 3.3, 4.4};
 
-    System.out.println("Array integer sum:");
-    System.out.println(sumArray(intArray));
+    try {
+      System.out.println("Array integer sum:");
+      System.out.println(sumArray(intArray, 4));
 
-    System.out.println("\nArray double sum:");
-    System.out.println(sumArray(doubleArray));
+      System.out.println("\nArray double sum:");
+      System.out.println(sumArray(doubleArray, 66));
+    }catch(Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
 
-  public static <T extends Number> double sumArray(T[] inputArray){
+  public static <T extends Number> double sumArray(T[] inputArray, int tillThisElementToAdd)
+          throws Exception {
     double sum = 0;
-    for (int i = 0; i < inputArray.length; i++) {
-      T temp = inputArray[i];
-      sum += temp.doubleValue();
-    }return sum;
+    try {
+      for (int i = 0; i < tillThisElementToAdd; i++) {
+        T temp = inputArray[i];
+        sum += temp.doubleValue();
+      }
+    } catch (IndexOutOfBoundsException e) {
+      System.out.println("Given index is out of bound");
+      throw new Exception("error message to throw");
+    } catch (Exception e) {
+      System.out.println("error... I cannot do it...");
+    }
+    return sum;
   }
 }
