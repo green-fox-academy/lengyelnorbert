@@ -15,6 +15,10 @@ public class MainMethod {
     Student john = new Student("John Doe", 20, "male", "BME");
     people.add(john);
     Student student = new Student();
+    student.skippedDays = 2;
+    people.add(student);
+    Student student2 = new Student();
+    student2.skippedDays = 5;
     people.add(student);
     Mentor gandhi = new Mentor("Gandhi", 148, "male", "senior");
     people.add(gandhi);
@@ -23,7 +27,7 @@ public class MainMethod {
     Sponsor sponsor = new Sponsor();
     Sponsor elon = new Sponsor("Elon Musk", 46, "male", "SpaceX");
 
-    student.skipDays(3);
+    student.skippedDays =3;
 
     for (int i = 0; i < 5; i++) {
       elon.hire();
@@ -43,5 +47,11 @@ public class MainMethod {
     badass.addMentor(mentor);
     badass.addMentor(gandhi);
     badass.info();
+
+    System.out.println(student.compareTo(student2));
   }
+
+
+
+
 }

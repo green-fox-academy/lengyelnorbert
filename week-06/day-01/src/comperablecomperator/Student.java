@@ -32,9 +32,16 @@ public class Student extends Person implements Comparable {
   }
 
   @Override
-  public int compareTo(Object o) {
+  public int compareTo(Object student) {
+    if (student instanceof Student){
+      System.out.println(this.skippedDays);
+      System.out.println(((Student) student).skippedDays);
+      return (this.skippedDays) - ((Student) student).skippedDays;
+
+    }
+    else {
+      System.out.println("nem megy...");
+    }
     return 0;
   }
 }
-
-
