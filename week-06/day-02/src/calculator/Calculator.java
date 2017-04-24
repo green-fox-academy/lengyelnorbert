@@ -8,7 +8,6 @@ public class Calculator {
     System.out.println(deduct(99.99, 9));
     System.out.println(multiply(10.5, 5, 2, 3));
     System.out.println(divide(0, 5));
-
   }
 
   static <T extends Number> double add(T... numbers) {
