@@ -48,7 +48,9 @@ public class Calculator {
 
   static <T extends Number> double divide(T first, T second) {
     double result = 0;
-    if (first.doubleValue() != 0 && second.doubleValue() != 0) {
+    if (first.doubleValue() == 0 && second.doubleValue() == 0) {
+      return 0;
+    } else {
       try {
         result = first.doubleValue() / second.doubleValue();
       } catch (Exception e) {
