@@ -1,18 +1,22 @@
 package markerannotation;
 
 import java.util.Arrays;
-import javax.management.StringValueExp;
 
 @Monitor
 public class Screen {
 
-  int resolution;
   Size size;
+  String classification;
+  String aspectRatio;
+
+  public Screen(Size size) {
+    this.size = size;
+    this.classification = this.getClass().getAnnotation(Monitor.class).classification();
+    this.aspectRatio = this.getClass().getAnnotation(Monitor.class).aspectratio();
+  }
 
   @Override
   public String toString() {
-    String[] anno = new String[2];
-    anno[0] = this.getClass().getAnnotations().;
-    return "Resolution: " + resolution + ", size: " + size + ", aspectration: " + Arrays.toString(anno);
+    return "This monitor size: " + size + ", aspectration: " + aspectRatio + ", classification:" + classification;
   }
 }

@@ -4,4 +4,7 @@ package markerannotation;
 public class Screen219 extends Screen{
 
 
+  public Screen219(Size size) {
+    super(size);
+  }
 }
