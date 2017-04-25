@@ -13,4 +13,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'net.sf.jopt-simple', name: 'jopt-simple', version: '5.0.3'
     compile group: 'com.opencsv', name: 'opencsv', version: '3.9'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
 }

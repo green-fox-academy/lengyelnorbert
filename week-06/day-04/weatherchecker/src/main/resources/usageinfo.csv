@@ -1,0 +1,2 @@
+-c HU;write the current weather in Hungary
+-c HU --compare AT;write the weather difference between Hungary and Austria
