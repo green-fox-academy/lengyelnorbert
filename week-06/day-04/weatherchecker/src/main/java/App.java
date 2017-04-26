@@ -9,19 +9,22 @@ public class App {
     weatherChecker.isOptionOrArgumentGiven(args);
 
     OptionParser parser = new OptionParser();
-    parser.accepts("l");
     parser.accepts("c").withRequiredArg();
+    parser.accepts("compare").withRequiredArg();
     OptionSet options = parser.parse(args);
 
-    if (options.has("c")) {
+    if (options.has("c") && options.has("compare")) {
+      System.out.println(
+              "-c and -compare was given with the argument " + options.valueOf("c")
+                      + " and argument " + options
+                      .valueOf("compare"));
+      String valueOfFirstCountryCode = options.valueOf("c").toString();
+      String valueOfSecondCountryCode = options.valueOf("compare").toString();
+      weatherChecker.compareWeather(valueOfFirstCountryCode, valueOfSecondCountryCode);
+    } else if (options.has("c")) {
       System.out.println("`-c` was given with the argument " + options.valueOf("c"));
       String valueOfOptionC = options.valueOf("c").toString();
       weatherChecker.checkWeather(valueOfOptionC);
     }
-
-    if (options.has("l")) {
-      System.out.println("`-l` was given with the no additional information.");
-    }
   }
-
 }

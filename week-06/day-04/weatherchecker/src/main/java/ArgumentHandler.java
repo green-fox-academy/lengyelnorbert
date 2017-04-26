@@ -15,6 +15,16 @@ public class ArgumentHandler {
   public void checkWeather(String valueOfOptionC) {
     String countryCode = valueOfOptionC.toUpperCase();
     String[] getCountryElement = getTheCountry(countryCode);
+    System.out.println(getCountryElement[3]); // just for checking
+  }
+
+  public void compareWeather (String countryA, String CountryB){
+    String countryCodeA = countryA.toUpperCase();
+    String countryCodeB = CountryB.toUpperCase();
+    String[] getCountryElementA = getTheCountry(countryCodeA);
+    String[] getCountryElementB = getTheCountry(countryCodeB);
+    System.out.println(getCountryElementA[3] + " - " + getCountryElementB[3]); // just for checking
+
   }
 
   public String[] getTheCountry(String countryCode){

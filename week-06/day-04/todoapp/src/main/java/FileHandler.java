@@ -8,9 +8,12 @@ import java.util.List;
 
 public class FileHandler {
 
+  private static String todoFilePlace = "src/main/java/todo.csv";
+  private static String infoFilePlace = "src/main/java/basicinfo.csv";
+
   public static boolean isTodoFileExist() {
     try {
-      File f = new File(Main.getTodoFilePlace());
+      File f = new File(todoFilePlace);
       if (!f.exists()) {
         System.out.println("This todo file did not exist");
         return false;
@@ -26,7 +29,7 @@ public class FileHandler {
 
   public static void createTodoFile() {
     try {
-      File f = new File(Main.getTodoFilePlace());
+      File f = new File(todoFilePlace);
       f.createNewFile();
       System.out.println("This todo file has just been created");
     } catch (Exception e) {
@@ -35,7 +38,7 @@ public class FileHandler {
     }
   }
 
-  public static List<String[]> readAndReturnDataFromFile(String fileToReadPlace){
+  public static List<String[]> readDataFromFile(String fileToReadPlace){
     List<String[]> dataFromFile = new ArrayList<>();
     try {
       CSVReader reader = new CSVReader(new FileReader(fileToReadPlace), ';');
@@ -60,26 +63,21 @@ public class FileHandler {
   }
 
   public static void showInfoMessage() {
-    List<String[]> readFile = FileHandler.readAndReturnDataFromFile(Main.getInfoFilePlace());
+    List<String[]> readFile = FileHandler.readDataFromFile(infoFilePlace);
     for (String[] string : readFile) {
       for (int i = 0; i < string.length; i++) {
         System.out.println(string[i]);
       }
     }
   }
+
+
+
+  public static String getTodoFilePlace() {
+    return todoFilePlace;
+  }
+
+  public static String getInfoFilePlace() {
+    return infoFilePlace;
+  }
 }
-
-
-
-
-
-
-//  CSVWriter writer = new CSVWriter(new FileWriter("copydata.csv"), ';',
-//          CSVWriter.NO_QUOTE_CHARACTER);
-//writer.writeAll(lines);
-//        writer.close();
-
-
-
-//  CSVReader reader = new CSVReader(new FileReader("data.csv"), ';');
-//  List<String[]> lines = reader.readAll();
