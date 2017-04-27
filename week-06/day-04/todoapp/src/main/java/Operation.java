@@ -1,10 +1,11 @@
-import java.util.ArrayList;
+import entity.Todo;
 import java.util.List;
 
 public class Operation {
 
-  List<Todo> todoList = new ArrayList<>();
-
+  static final int CSV_COLUMN_COUNT = 4;
+  List<Todo> todoList;
+  List<String[]> todoListString;
 
 
   public static void listTasks() {
@@ -22,22 +23,20 @@ public class Operation {
   public static void updateTask(String u) {
   }
 
-    public String[] todoToArray(Todo todo) {
-    String[] todoToArray = new String[5];
+  private void todoListToArrayList (List<Todo> todoList){
+    for (Todo todoItem : todoList) {
+      todoListString.add(todoElementToArray(todoItem));
+    }
+  }
+
+  private String[] todoElementToArray(Todo todo) {
+    String[] todoToArray = new String[CSV_COLUMN_COUNT];
     todoToArray[0] = String.valueOf(todo.getTodoID());
     todoToArray[1] = String.valueOf(todo.getCreatedAt());
     todoToArray[2] = String.valueOf(todo.getCompletedAt());
-    todoToArray[3] = String.valueOf(todo.getCompilationTime());
-    todoToArray[4] = String.valueOf(todo.getTaskText());
+    todoToArray[3] = String.valueOf(todo.getTaskText());
     return todoToArray;
-
-
-
-
-
-
-
-
+  }
 }
 //  static List<String[]> todoFileData;
 //  static List<Todo> todoList;
