@@ -1,9 +1,11 @@
+import java.io.IOException;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface GitHubService {
 
@@ -12,7 +14,7 @@ public interface GitHubService {
           "Accept: application/json"
   })
 
-  public static void main(String[] args) {
+  static void main(String[] args) {
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .build();
@@ -21,7 +23,11 @@ public interface GitHubService {
 
     Call<ResponseBody> repos = service.listRepos("octocat");
 
-    System.out.println(repos.execute().body().string());
+    try {
+      System.out.println(repos.execute().body().string());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   @GET("users/{user}/repos")

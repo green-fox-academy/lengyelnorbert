@@ -15,6 +15,8 @@ public class TodoController {
   DataAccessObject<Todo> todoDao;
   DataAccessObject<RunOption> runOptionDao;
 
+  private static int totalTodoID;
+
   public TodoController() {
     todoDao = new TodoDataAccessObject("src/main/java/datasource/todo.csv");
     runOptionDao = new RunOptionDataAccessObject("src/main/java/datasource/basicinfo.txt");
@@ -29,8 +31,9 @@ public class TodoController {
 
   public void addTodo(String taskText) {
     List<Todo> todoList = this.todoDao.loadAll();
+    totalTodoID ++;
     String[] todoStringArr = new String[4];
-    todoStringArr[0] = "35";
+    todoStringArr[0] = String.valueOf(totalTodoID);
     todoStringArr[1] = ZonedDateTime.now().toString();
     todoStringArr[2] = null;
     todoStringArr[3] = taskText;
@@ -100,5 +103,13 @@ public class TodoController {
     } catch (Exception e) {
       System.out.println("not a valid ID");
     }
+  }
+
+  public static int getTotalTodoID() {
+    return totalTodoID;
+  }
+
+  public static void setTotalTodoID(int totalTodoID) {
+    TodoController.totalTodoID = totalTodoID;
   }
 }

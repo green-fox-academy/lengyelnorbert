@@ -40,5 +40,4 @@ public class ArgumentHandler {
       todoController.updateTodo(options.valueOf("u").toString());
     }
   }
-
 }

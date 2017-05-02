@@ -1,11 +1,13 @@
 package datasource;
 
+import controller.TodoController;
 import entity.ToDoFactory;
 import entity.Todo;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TodoDataAccessObject implements DataAccessObject<Todo> {
+
   private final FileHandler fileHandler;
 
   public TodoDataAccessObject(String filePath) {
@@ -15,8 +17,9 @@ public class TodoDataAccessObject implements DataAccessObject<Todo> {
   @Override
   public void saveAll(List<Todo> listToSave) {
     List<String> entiesLines = new ArrayList<>();
-    for (Todo todo: listToSave)
-    {entiesLines.add(todo.toDataFormat());
+    entiesLines.add(String.format("HEAD;total todos sofar >>;%d;", TodoController.getTotalTodoID()));
+    for (Todo todo : listToSave) {
+      entiesLines.add(todo.toDataFormat());
     }
     fileHandler.writeDataToFile(entiesLines);
   }
@@ -28,8 +31,13 @@ public class TodoDataAccessObject implements DataAccessObject<Todo> {
     List<String> todoStringList = fileHandler.readDataFromFile();
     for (String todoStringElement : todoStringList) {
       String[] todoData = todoStringElement.split(";");
-      todoEntities.add(ToDoFactory.createTodo(todoData));
+      if (todoData[0].equals("HEAD")) {
+        TodoController.setTotalTodoID(Integer.parseInt(todoData[2]));
+      } else {
+        todoEntities.add(ToDoFactory.createTodo(todoData));
+      }
     }
     return todoEntities;
   }
 }
+
