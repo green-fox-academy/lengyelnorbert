@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Thymeleaf Exercise #10</title>
+  <title>Thymeleaf Exercise #10a</title>
   <link rel="stylesheet" th:href="@{/style.css}"/>
   <meta charset="utf-8"/>
 </head>
@@ -18,9 +18,10 @@
       <span th:case="false" th:text= "'Bad Guy'"/>
     </td>
     <td>
-      <form action="#" th:action="@{/exercise10/increase}" method="get">
+      <form action="#" th:action="@{/exercise10a/increase}" method="get">
         <input type="hidden" name="index" th:value="${listelementStat.index}"/>
-      <span><input type="submit" value="Add 10 Zebras" /></span>
+        <input type="number" name="value"/>
+        <span><input type="submit" value="Add Some Zebras" /></span>
       </form>
     </td>
   </tr>

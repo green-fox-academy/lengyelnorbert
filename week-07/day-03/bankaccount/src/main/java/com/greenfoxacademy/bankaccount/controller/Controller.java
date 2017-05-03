@@ -87,9 +87,21 @@ public class Controller {
 
   @GetMapping(value = "/exercise10/increase")
   public String bankAccountList10Submit(@RequestParam(value = "index") int index) {
-    System.out.println(index);
     int temp = accountList.get(index).getBalance();
-    accountList.get(index).setBalance(temp + 33);
+    accountList.get(index).setBalance(temp + 10);
     return "redirect:/exercise10";
+  }
+
+  @GetMapping(value = "/exercise10a")
+  public String bankAccountList10a(Model model) {
+    model.addAttribute("accountList", accountList);
+    return "exercise10a";
+  }
+
+  @GetMapping(value = "/exercise10a/increase")
+  public String bankAccountList10aSubmit(@RequestParam(value = "index") int index, @RequestParam(value = "value") int value) {
+    int temp = accountList.get(index).getBalance();
+    accountList.get(index).setBalance(temp + value);
+    return "redirect:/exercise10a";
   }
 }
