@@ -13,4 +13,9 @@ public class BankAccount {
   private String animalType;
   private boolean isKing;
   private boolean goodGuy;
+
+  public boolean xxx(){
+    return goodGuy;
+  }
 }
+

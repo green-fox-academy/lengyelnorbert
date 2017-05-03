@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @org.springframework.stereotype.Controller
@@ -63,5 +64,17 @@ public class Controller {
     return "exercise9";
   }
 
-
+  @RequestMapping(value = "/exercise10")
+  public String bankAccountList10(Model model) {
+    List<BankAccount> accountList = new ArrayList<>();
+    accountList.add(new BankAccount("Joe", 30, "lion", true, true));
+    accountList.add(new BankAccount("GThePig", 200, "pig", true, true));
+    accountList.add(new BankAccount("Misi", 400, "elephant", true, false));
+    accountList.add(new BankAccount("Jeno", 50, "greenfox", false, false));
+    accountList.add(new BankAccount("John", 20, "monkey", false, true));
+    accountList.add(new BankAccount("Kroko", 50, "crocodile", false, true));
+    model.addAttribute("accountList", accountList);
+    return "exercise10";
+  }
 }
+//, method= RequestMethod.POST

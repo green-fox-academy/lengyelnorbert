@@ -13,7 +13,8 @@
         <td th:text="' | Name: ' + ${listelement.getName()}" />
         <td th:text="' | Balance: ' + ${#numbers.formatDecimal(listelement.getBalance(),0,2)} + ' Zebra ' " />
         <td th:text="' | Animal type: ' + ${listelement.getAnimalType()}" />
-        <td th:text="' | ' + ${listelement.isGoodGuy()} ? 'Good Guy' : 'Bad Guy' " />
+        <td th:text="' | ' + ${listelement.isGoodGuy() ? 'Good Guy' : 'Bad Guy' }" />
+        <td th:text="${listelement.isGoodGuy()}" />
         </tr>
       </table>
   </body>
