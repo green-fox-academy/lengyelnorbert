@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Thymeleaf Exercise #1</title>
+  <link rel="stylesheet" th:href="@{/style.css}"/>
+  <meta charset="utf-8"/>
+</head>
+<body>
+<div th:each="listelement : ${accountList}">
+  <div th:if="${listelement.isKing()}" th:style="'color: gold; font-weight:bold'">
+    <p
+       th:text="'#' +${listelementStat.count} +
+        ' | Name: ' + ${listelement.getName()} +
+        ' | Balance: ' + ${#numbers.formatDecimal(listelement.getBalance(),0,2)} + ' Zebra ' +
+        ' | Animal type: ' + ${listelement.getAnimalType()}"/>
+</div>
+  <div th:unless="${listelement.isKing()}" th:style="''">
+    <p
+        th:text="'#' +${listelementStat.count} +
+        ' | Name: ' + ${listelement.getName()} +
+        ' | Balance: ' + ${#numbers.formatDecimal(listelement.getBalance(),0,2)} + ' Zebra ' +
+        ' | Animal type: ' + ${listelement.getAnimalType()}"/>
+  </div>
+</div>
+</body>
+</html>
