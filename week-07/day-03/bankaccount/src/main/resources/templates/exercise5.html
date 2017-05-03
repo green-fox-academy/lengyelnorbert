@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Thymeleaf Exercise #1</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <span th:each="listelement : ${accountList}">
+      <p th:text="'Name: ' + ${listelement.name} +
+      ' | Balance: ' + ${#numbers.formatDecimal(listelement.balance,0,2)} + ' Zebra ' +
+      ' | Animal type: ' + ${listelement.animalType} "/>
+    </span>
+  </body>
+</html>

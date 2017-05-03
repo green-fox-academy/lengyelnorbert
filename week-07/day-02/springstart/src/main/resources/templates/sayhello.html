@@ -4,13 +4,13 @@
   <title>Getting Started: Serving Web Content</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-<body>
-<p> Say Hello To The World: </p>
-<table>
-  <tr th:each="listelement : ${sayHelloList}">
-    <td th:style="'font-size: ' + ${listelement.size} + 'px; color: rgb(' + ${listelement.colorR} +', '+ ${listelement.colorG} + ', ' + ${listelement.colorB} + ');'"
-        th:text=" ${listelement.helloType} + ' >> ' + ${listelement.name}"></td>
-  </tr>
-</table>
-</body>
+  <body>
+  <p> Say Hello To The World: </p>
+    <table>
+      <tr th:each="listelement : ${sayHelloList}">
+        <td th:style="'font-size: ' + ${listelement.size} + 'px; color: rgb(' + ${listelement.colorR} +', '+ ${listelement.colorG} + ', ' + ${listelement.colorB} + ');'"
+            th:text=" ${listelement.helloType} + ' >> ' + ${listelement.name}"></td>
+      </tr>
+    </table>
+  </body>
 </html>
