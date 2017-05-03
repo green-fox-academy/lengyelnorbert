@@ -5,12 +5,27 @@ import com.greenfoxacademy.bankaccount.model.BankAccount;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+
+  List<BankAccount> accountList = bankAccountListBuilder();
+
+  public List<BankAccount> bankAccountListBuilder() {
+    List<BankAccount> accountList = new ArrayList<>();
+    accountList.add(new BankAccount("Joe", 30, "lion", true, true));
+    accountList.add(new BankAccount("GThePig", 200, "pig", true, true));
+    accountList.add(new BankAccount("Misi", 400, "elephant", true, false));
+    accountList.add(new BankAccount("Jeno", 50, "greenfox", false, false));
+    accountList.add(new BankAccount("John", 20, "monkey", false, true));
+    accountList.add(new BankAccount("Kroko", 50, "crocodile", false, true));
+    return accountList;
+  }
 
   @RequestMapping("/exercise1")
   public String bankAccount(Model model) {
@@ -64,17 +79,17 @@ public class Controller {
     return "exercise9";
   }
 
-  @RequestMapping(value = "/exercise10")
+  @GetMapping(value = "/exercise10")
   public String bankAccountList10(Model model) {
-    List<BankAccount> accountList = new ArrayList<>();
-    accountList.add(new BankAccount("Joe", 30, "lion", true, true));
-    accountList.add(new BankAccount("GThePig", 200, "pig", true, true));
-    accountList.add(new BankAccount("Misi", 400, "elephant", true, false));
-    accountList.add(new BankAccount("Jeno", 50, "greenfox", false, false));
-    accountList.add(new BankAccount("John", 20, "monkey", false, true));
-    accountList.add(new BankAccount("Kroko", 50, "crocodile", false, true));
     model.addAttribute("accountList", accountList);
     return "exercise10";
   }
+
+  @GetMapping(value = "/exercise10/increase")
+  public String bankAccountList10Submit(@RequestParam(value = "index") int index) {
+    System.out.println(index);
+    int temp = accountList.get(index).getBalance();
+    accountList.get(index).setBalance(temp + 33);
+    return "redirect:/exercise10";
+  }
 }
-//, method= RequestMethod.POST

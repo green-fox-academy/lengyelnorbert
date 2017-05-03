@@ -14,8 +14,7 @@ public class BankAccount {
   private boolean isKing;
   private boolean goodGuy;
 
-  public boolean xxx(){
-    return goodGuy;
+  public void setBalance(int balance) {
+    this.balance = balance;
   }
 }
-

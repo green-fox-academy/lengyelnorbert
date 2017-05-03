@@ -18,13 +18,12 @@
       <span th:case="false" th:text= "'Bad Guy'"/>
     </td>
     <td>
-      <form>
-      <input type="submit" />
+      <form action="#" th:action="@{/exercise10/increase}" method="get">
+        <input type="hidden" name="index" th:value="${listelementStat.index}"/>
+      <span><input type="submit" value="Add 10 Zebras" /></span>
       </form>
     </td>
   </tr>
 </table>
 </body>
 </html>
-
-<!--<button type="submit" name="action" value="save">add 10 Zebras</button>-->
