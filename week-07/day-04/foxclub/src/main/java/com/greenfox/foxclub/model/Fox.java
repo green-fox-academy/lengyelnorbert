@@ -13,11 +13,23 @@ public class Fox {
   String name;
   String currentFood;
   String currentDrink;
-  List<String> listOfTricks;
+  List<String> knownListOfTricks;
 
   public Fox(){
     currentFood = "no food";
     currentDrink = "no drink";
-    listOfTricks = new ArrayList<>();
+    knownListOfTricks = new ArrayList<>();
+  }
+
+  public void setCurrentFood(String currentFood) {
+    this.currentFood = currentFood;
+  }
+
+  public void setCurrentDrink(String currentDrink) {
+    this.currentDrink = currentDrink;
+  }
+
+  public void addTrickToKnownTrickList(String trick){
+    knownListOfTricks.add(trick);
   }
 }

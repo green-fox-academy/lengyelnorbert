@@ -7,19 +7,19 @@
 </head>
 <body>
 <h1>Information page</h1>
-<p><a th:href="@{/}">Information</a>  |  <a th:href="@{/tricks}">Trick Center</a>  |  <a th:href="@{/shop}">Nutritions Shop</a></p>
+<p><a th:href="@{/}">Information</a> | <a th:href="@{/tricks}">Trick Center</a> | <a
+    th:href="@{/shop}">Nutritions Shop</a></p>
 
 <img th:src="${fox.profilePictureLocation}" width="200px"/>
 
 <p th:text="'This is Mr. Fox. Currently living on '
 + ${fox.currentFood} + ' and '
 + ${fox.currentDrink} + '. He knows '
-+ ${fox.listOfTricks.size()} + ' tricks'"/>
++ ${fox.knownListOfTricks.size()} + ' tricks'"/>
 <h1 th:text="'Known tricks'"/>
 
 <ul>
-  <li>Write HTML</li>
-  <li>Code in Java</li>
+<li th:each="trick : ${knownTrickList}" th:text="${trick}"></li>
 </ul>
 
 </body>

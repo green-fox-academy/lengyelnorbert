@@ -13,19 +13,22 @@
 <p th:text="'This is Mr. Fox. Currently living on '
 + ${fox.currentFood} + ' and '
 + ${fox.currentDrink} + '. He knows '
-+ ${fox.listOfTricks.size()} + ' tricks'"/>
++ ${fox.knownListOfTricks.size()} + ' tricks'"/>
 
 <p th:text="'Currently ' + ${foodList.size()} + ' type of food and ' + ${drinkList.size()} + ' type of drink avaiable food in the shop: '"/>
-
-
-<h1 th:text="'Known tricks'"/>
-<ul>
-  <li>Write HTML</li>
-  <li>Code in Java</li>
-</ul>
+<table>
+  <form action="/eatdrink">
+    <tr>
+      <th>Food</th>
+      <th>Drink</th>
+    </tr>
+    <tr>
+      <td><input type="list" name="eatenFood"/></td>
+      <td><input type="list" name="drunkDrink"/></td>
+      <td><input type="submit" value="EatAndFeed"/></td>
+    </tr>
+  </form>
+</table>
 
 </body>
 </html>
-
-<!--<span th:each="fooditem : ${foodList}"/>-->
-<!--<p th:text="fooditem">-->

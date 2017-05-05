@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <title>Programmer Fox</title>
   <link rel="stylesheet" th:href="@{/style.css}"/>
@@ -13,13 +13,32 @@
 <p th:text="'This is Mr. Fox. Currently living on '
 + ${fox.currentFood} + ' and '
 + ${fox.currentDrink} + '. He knows '
-+ ${fox.listOfTricks.size()} + ' tricks'"/>
-<h1 th:text="'Known tricks'"/>
++ ${fox.knownListOfTricks.size()} + ' tricks'"/>
 
-<ul>
-  <li>Write HTML</li>
-  <li>Code in Java</li>
-</ul>
+<form action="/trickslearned">
+  <tr>
+    <th>Tricks</th>
+  </tr>
+  <tr >
+    <td>
+      <select name="trickToLearn">
+        <option th:each="trick : ${trickList}"
+                th:value="${trickStat.index}"
+                th:text="${trick}">
+        </option>
+      </select>
+    </td>
+    <td><input type="submit" value="Learn This Trick"/></td>
+  </tr>
+</form>
 
 </body>
 </html>
+<!--knownTrickList-->
+<!--<ul>-->
+  <!--<li>Write HTML</li>-->
+  <!--<li>Code in Java</li>-->
+<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+<!--th:if="${listelement.isKing()}" th:style="'color: gold; font-weight:bold'"-->
+
