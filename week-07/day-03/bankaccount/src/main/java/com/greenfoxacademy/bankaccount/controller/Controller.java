@@ -18,12 +18,12 @@ public class Controller {
 
   public List<BankAccount> bankAccountListBuilder() {
     List<BankAccount> accountList = new ArrayList<>();
-    accountList.add(new BankAccount("Joe", 30, "lion", true, true));
+    accountList.add(new BankAccount("Karoly", 30, "lion", false, true));
     accountList.add(new BankAccount("GThePig", 200, "pig", true, true));
-    accountList.add(new BankAccount("Misi", 400, "elephant", true, false));
+    accountList.add(new BankAccount("Misi", 400, "elephant", false, false));
     accountList.add(new BankAccount("Jeno", 50, "greenfox", false, false));
-    accountList.add(new BankAccount("John", 20, "monkey", false, true));
-    accountList.add(new BankAccount("Kroko", 50, "crocodile", false, true));
+    accountList.add(new BankAccount("Tibor", 20, "monkey", false, true));
+    accountList.add(new BankAccount("Sanyi", 50, "crocodile", false, true));
     return accountList;
   }
 
@@ -99,7 +99,8 @@ public class Controller {
   }
 
   @GetMapping(value = "/exercise10a/increase")
-  public String bankAccountList10aSubmit(@RequestParam(value = "index") int index, @RequestParam(value = "value") int value) {
+  public String bankAccountList10aSubmit(@RequestParam(value = "index") int index,
+          @RequestParam(value = "value") int value) {
     int temp = accountList.get(index).getBalance();
     accountList.get(index).setBalance(temp + value);
     return "redirect:/exercise10a";

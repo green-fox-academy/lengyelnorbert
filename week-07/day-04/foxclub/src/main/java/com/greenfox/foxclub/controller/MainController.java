@@ -5,8 +5,6 @@ import com.greenfox.foxclub.model.Drink;
 import com.greenfox.foxclub.model.Food;
 import com.greenfox.foxclub.model.Fox;
 import com.greenfox.foxclub.model.Trick;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
