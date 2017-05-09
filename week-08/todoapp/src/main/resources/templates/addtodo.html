@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8"/>
+  <link th:href="@{/main.css}" href="/main.css"  rel="stylesheet" type="text/css" />
+  <title>Add new Todo | Todo appliciation</title>
+
+</head>
+<body>
+<h1>Add new Todo | Todos for today</h1>
+<p><a th:href="@{/todo/addtodo}">Add new Todo</a> |
+  <a th:href="@{/todo}">List all Todos</a> |
+  <a th:href="@{/todo/list?isActive=true}">List undone Todos</a> |
+  <a th:href="@{/todo/list?isActive=false}">List done Todos</a> </p>
+<table>
+  <form action="/todo/add">
+    <tr>
+      <th>Todo Task (text)</th>
+    </tr>
+    <tr>
+      <td><input type="list" name="todoText"/></td>
+      <td><input type="submit" value="Add todo"/></td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

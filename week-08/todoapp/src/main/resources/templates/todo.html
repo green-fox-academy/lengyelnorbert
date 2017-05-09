@@ -8,14 +8,18 @@
 </head>
 <body>
 <h1>Todos for today</h1>
-
+<p><a th:href="@{/todo/addtodo}">Add new Todo</a> |
+  <a th:href="@{/todo}">List all Todos</a> |
+  <a th:href="@{/todo/list?isActive=true}">List undone Todos</a> |
+  <a th:href="@{/todo/list?isActive=false}">List done Todos</a> </p>
   <table>
 
     <tr>
-      <th>ID  </th>
-      <th>     ACTION     </th>
-      <th>  DONE  </th>
-      <th> URGEN </th>
+      <th>ID</th>
+      <th>ACTION</th>
+      <th>IS IT DONE?</th>
+      <th>IS IT URGENT?</th>
+      <th>SUM: <span th:text="${todoListSize}"/> TODOS</th>
     </tr>
 
     <tr th:each="todoelement : ${todolist}" >
@@ -23,8 +27,8 @@
       <td th:text="${todoelement.getTitle()}" />
       <td th:text="${todoelement.isDone()}" />
       <td th:text="${todoelement.isUrgent()}" />
+      <td><a th:href="'/todo/' + ${todoelement.getId()} + '/removetodo'">delete</a></td>
     </tr>
   </table>
-
 </body>
 </html>
