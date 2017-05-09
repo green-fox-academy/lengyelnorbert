@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8"/>
+  <link th:href="@{/main.css}" href="/main.css"  rel="stylesheet" type="text/css" />
+  <title>Todo appliciation</title>
+
+</head>
+<body>
+<h1>Todos for today</h1>
+
+  <table>
+
+    <tr>
+      <th>ID  </th>
+      <th>     ACTION     </th>
+      <th>  DONE  </th>
+      <th> URGEN </th>
+    </tr>
+
+    <tr th:each="todoelement : ${todolist}" >
+      <td th:text="'#' +${todoelement.getId()}" />
+      <td th:text="${todoelement.getTitle()}" />
+      <td th:text="${todoelement.isDone()}" />
+      <td th:text="${todoelement.isUrgent()}" />
+    </tr>
+  </table>
+
+</body>
+</html>

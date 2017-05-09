@@ -6,24 +6,24 @@
   <meta charset="utf-8"/>
 </head>
 <body>
-<table>
-  <tr th:each="listelement : ${accountList}"
-      th:style="${listelement.isKing()} ? 'color: gold; font-weight:bold' : '' ">
-    <td th:text="'#' +${listelementStat.count}" />
-    <td th:text="' | Name: ' + ${listelement.getName()}" />
-    <td th:text="' | Balance: ' + ${#numbers.formatDecimal(listelement.getBalance(),0,2)} + ' Zebra ' " />
-    <td th:text="' | Animal type: ' + ${listelement.getAnimalType()}" />
-    <td th:switch="${listelement.isGoodGuy()}">
-      <span th:case="true" th:text= "'Good Guy'"/>
-      <span th:case="false" th:text= "'Bad Guy'"/>
-    </td>
-    <td>
-      <form action="#" th:action="@{/exercise10/increase}" method="get">
-        <input type="hidden" name="index" th:value="${listelementStat.index}"/>
-      <span><input type="submit" value="Add 10 Zebras" /></span>
-      </form>
-    </td>
-  </tr>
-</table>
+  <table>
+    <tr th:each="listelement : ${accountList}"
+        th:style="${listelement.isKing()} ? 'color: gold; font-weight:bold' : '' ">
+      <td th:text="'#' +${listelementStat.count}" />
+      <td th:text="' | Name: ' + ${listelement.getName()}" />
+      <td th:text="' | Balance: ' + ${#numbers.formatDecimal(listelement.getBalance(),0,2)} + ' Zebra ' " />
+      <td th:text="' | Animal type: ' + ${listelement.getAnimalType()}" />
+      <td th:switch="${listelement.isGoodGuy()}">
+        <span th:case="true" th:text= "'Good Guy'"/>
+        <span th:case="false" th:text= "'Bad Guy'"/>
+      </td>
+      <td>
+        <form action="#" th:action="@{/exercise10/increase}" method="get">
+          <input type="hidden" name="index" th:value="${listelementStat.index}"/>
+        <span><input type="submit" value="Add 10 Zebras" /></span>
+        </form>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
