@@ -1,12 +1,15 @@
 package com.greenfox.frontend.MainController;
 
 
+import com.greenfox.frontend.Entity.Appenda;
+import com.greenfox.frontend.Entity.DoUntil;
 import com.greenfox.frontend.Entity.DoublingClass;
 import com.greenfox.frontend.Entity.WelcomeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,8 +42,19 @@ public class RestController {
   }
 
   @RequestMapping(value = "appenda/{text}", method = RequestMethod.GET)
-  public String appenda(@PathVariable(value = "text", required = false) String textToAddA){
-    return textToAddA.concat("a");
+  public Appenda appenda(@PathVariable(value = "text", required = false) String textToAddA) {
+    Appenda text = new Appenda(textToAddA);
+    return text;
   }
 
+  @RequestMapping(value = "dountil/{what}", method = RequestMethod.POST)
+  public DoUntil doUntil(@PathVariable(value = "what", required = true) String whatTodo,
+          @RequestBody DoUntil doUntil) {
+    if (whatTodo.toLowerCase().equals("sum")) {
+      doUntil.sumTheDountil();
+    } else if (whatTodo.toLowerCase().equals("factor")) {
+      doUntil.factorTheDountil();
+    }
+    return doUntil;
+  }
 }
