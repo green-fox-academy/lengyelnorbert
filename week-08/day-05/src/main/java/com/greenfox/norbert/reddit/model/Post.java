@@ -19,14 +19,14 @@ public class Post {
   private long score;
 
   public Post() {
-    this.timestamp = new Timestamp(System.currentTimeMillis());
+    this.timestamp = new Timestamp(System.currentTimeMillis() /1000);
   }
 
-  public void upVotePost(){
+  public void upVotePost() {
     this.score += 1;
   }
 
-  public void downVotePost(){
+  public void downVotePost() {
     this.score -= 1;
   }
 
@@ -68,8 +68,5 @@ public class Post {
 
   public void setScore(long score) {
     this.score = score;
-  }
-
-  public static class Posts {
   }
 }
