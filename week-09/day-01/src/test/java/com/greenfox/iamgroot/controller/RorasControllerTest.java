@@ -52,17 +52,22 @@ public class RorasControllerTest {
 
   @Test
   public void roraFillShipFull() throws Exception {
-    mockMvc.perform(get("/rocket/fill").param("caliber", ".50").param("amount", "12500")
+    mockMvc.perform(get("/rocket/fill").param("caliber", ".50").param("amount", "7500")
             .contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.received", is(".50")))
-            .andExpect(jsonPath("$.amount", is(12500)))
+            .andExpect(jsonPath("$.amount", is(7500)))
             .andExpect(jsonPath("$.shipstatus", is("full")))
             .andExpect(jsonPath("$.ready", is(true)));
   }
 
   @Test
-  public void roraFill() {
+  public void roraFillShipNoParameter() throws Exception {
+    mockMvc.perform(get("/rocket/fill")
+            .contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("$.error", is("missing servlet request parameter exception")));
   }
 }
