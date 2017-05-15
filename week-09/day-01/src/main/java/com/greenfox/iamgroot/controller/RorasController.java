@@ -20,8 +20,8 @@ public class RorasController {
   @Autowired
   RoraService roraService;
 
-  @Autowired
-  Cargo cargo;
+//  @Autowired
+//  Cargo cargo;
 
   @Autowired
   CargoFillReturn cargoFillReturn;
@@ -39,7 +39,7 @@ public class RorasController {
 
   @RequestMapping(value = "/rocket", method = RequestMethod.GET)
   public ResponseMessage roraReport() {
-    return new Cargo();
+    return roraService.getCargoInfo();
   }
 
   @RequestMapping(value = "/rocket/fill", method = RequestMethod.GET)

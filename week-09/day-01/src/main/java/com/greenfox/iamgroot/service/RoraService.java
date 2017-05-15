@@ -51,4 +51,8 @@ public class RoraService {
       cargo.setReady(false);
     }
   }
+
+  public Cargo getCargoInfo(){
+    return cargo;
+  }
 }
