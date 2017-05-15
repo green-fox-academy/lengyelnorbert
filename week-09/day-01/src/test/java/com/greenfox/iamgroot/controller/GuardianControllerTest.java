@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -39,7 +40,8 @@ public class GuardianControllerTest {
 
   @Test
   public void testGroot() throws Exception {
-    mockMvc.perform(get("/groot").param("message", "some message").contentType(MediaType.APPLICATION_JSON_UTF8))
+    mockMvc.perform(get("/groot").param("message", "some message")
+            .contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.received", is("some message")))
@@ -47,10 +49,32 @@ public class GuardianControllerTest {
   }
 
   @Test
-  public void testGrootWithNoInput() throws Exception{
+  public void testGrootWithNoInput() throws Exception {
     mockMvc.perform(get("/groot").param("message", "").contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.error", is("I am Groot!")));
+  }
+
+  @Test
+  public void testYondu() throws Exception {
+    mockMvc.perform(get("/yondu").param("distance", "20").param("time", "10")
+            .contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("distance", is(20)))
+            .andExpect(jsonPath("time", is(10)))
+            .andExpect(jsonPath("speed", is(2)));
+  }
+
+  @Test
+  public void testYonduForZeroTime() throws Exception {
+    mockMvc.perform(get("/yondu").param("distance", "20").param("time", "0")
+            .contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("distance", is(20)))
+            .andExpect(jsonPath("time", is(0)))
+            .andExpect(jsonPath("speed", is(2)));
   }
 }

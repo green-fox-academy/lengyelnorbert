@@ -4,11 +4,11 @@ package com.greenfox.iamgroot.model;
 public class Message implements ResponseMessage {
 
   private String received;
-  private String traslated;
+  private String translated;
 
   public Message(String received) {
     this.received = received;
-    traslated = "I am Groot!";
+    translated = "I am Groot!";
   }
 
   public String getReceived() {
@@ -19,8 +19,8 @@ public class Message implements ResponseMessage {
     this.received = received;
   }
 
-  public String getTraslated() {
-    return traslated;
+  public String getTranslated() {
+    return translated;
   }
 
 }

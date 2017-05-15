@@ -6,7 +6,11 @@ public class ErrorMessage implements ResponseMessage{
   private String error;
 
   public ErrorMessage() {
-    error = "I am Groot!";
+    error = "general error";
+  }
+
+  public ErrorMessage(String error) {
+    this.error = error;
   }
 
   public String getError() {
