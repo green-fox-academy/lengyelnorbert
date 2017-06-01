@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Add New Meal | Calory Table</title>
+  <link th:href="@{/indexcss.css}" href="/indexcss.css" rel="stylesheet" type="text/css"/>
+  <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<h1>Calory Table | Add New Meal</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      Calory table information:
+      <ul>
+        <li th:text="'number of meals: ' + ${mealList.size()}"></li>
+        <li th:text="'total calories: ' + ${totalCalory}"></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form action="/#" th:action="@{/addnewmeal}" method="post" th:object="${meal}">
+        <table>
+
+          <tr>
+            <td>Date</td>
+          </tr>
+          <tr>
+            <td>
+              <input class="form-control" type="text" placeholder="date"
+                     th:field="*{mealDate}"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Type of Food</td>
+          </tr>
+          <tr>
+            <td>
+              <!--<input class="form-control" type="text" placeholder="type of food"-->
+              <!--th:field="*{type}"/>-->
+              <select class="form-control"  th:field="*{type}">
+                <option th:each="mealType : ${mealTypeList}"
+                        th:value="${mealType.getMealTypeName()}"
+                        th:text="${mealType.getMealTypeName()}">
+                </option>
+              </select>
+
+
+            </td>
+          </tr>
+          <tr>
+            <td>Description</td>
+          </tr>
+          <tr>
+            <td>
+              <input class="form-control" type="text" placeholder="description"
+                     th:field="*{description}"/>
+            </td>
+          </tr>
+          <tr>
+            <td>Calories</td>
+          </tr>
+          <tr>
+            <td>
+              <input class="form-control" type="text" placeholder="calories"
+                     th:field="*{calories}"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input class="btn btn-success btn-block" type="submit" value="Save"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <tr>
+        <td>
+          <a class="btn btn-warning btn-block" th:href="@{'/'}" href="/">Cancel</a>
+        </td>
+      </tr>
+    </div>
+  </div>
+</div>
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>

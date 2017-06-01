@@ -47,7 +47,7 @@ public class TodoController {
   }
 
   @RequestMapping(value = "/{id}/removetodo", method = RequestMethod.GET)
-  public String remove(@PathVariable("id") Integer removeID) {
+  public String remove(@PathVariable("id") Long removeID) {
     System.out.println(removeID);
     todoRepository.delete(removeID);
     return "redirect:/todo/";
