@@ -2,33 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
-  <title>Calory Table</title>
+  <title>Calorie Table</title>
   <link th:href="@{/indexcss.css}" href="/indexcss.css" rel="stylesheet" type="text/css"/>
-  <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-<h1>Calory Table</h1>
+<h1>Calorie Table </h1>
 <div class="container">
   <div class="row">
-    <div class="col-md-1"></div>
     <div class="col-md-4">
-      Calory table information:
-      <ul>
-        <li th:text="'number of meals: ' + ${mealList.size()}"></li>
-        <li th:text="'total calories: ' + ${totalCalory}"></li>
-      </ul>
+      <table class="table">
+        <thead class="thead">
+        <tr>
+          <th class="col-md-2">number of meals</th>
+          <th class="col-md-2">total calories</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td th:text="${mealList.size()}"/>
+          <td th:text="${totalCalory}"/>
+        </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <a class="btn btn-success btn-block" th:href="'/addnewmeal'">Add new meal</a>
+      <a class="btn btn-success btn-block" th:href="'/'">Refresh meal list</a>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2">
+      <img src="pictures/ice-creams.png" width="100px"/>
+    </div>
   </div>
   <div class="row">
     <table class="table table-striped table-hover">
       <thead class="thead thead-inverse">
       <tr>
         <th class="col-md-1">id</th>
-        <th class="col-md-2">meal date</th>
+        <th class="col-md-2">date</th>
         <th class="col-md-2">type</th>
         <th class="col-md-2">description</th>
         <th class="col-md-1">calories</th>
@@ -39,11 +50,12 @@
       <tbody>
       <tr th:each="meal : ${mealList}">
         <td th:text="'#' +${meal.getId()}"/>
-        <td th:text="'#' +${meal.getMealDate()}"/>
+        <td th:text="${meal.getDate()}"/>
         <td th:text="${meal.getType()}"/>
         <td th:text="${meal.getDescription()}"/>
         <td th:text="${meal.getCalories()}"/>
-        <td><a class="btn btn-primary btn-block" th:href="'#'">edit</a></td>
+        <td><a class="btn btn-primary btn-block" name="idToEdit" href="/editmeal"
+               th:href="'/editmeal/' +${meal.getId()}">edit</a></td>
         <td><a class="btn btn-danger btn-block" name="idToDelete"
                onclick="return confirm('Are you sure to delete this meal?')" href="/deletemeal"
                th:href="'/deletemeal/' + ${meal.getId()}">delete</a></td>
@@ -52,7 +64,7 @@
     </table>
   </div>
 </div>
-<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

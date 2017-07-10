@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -20,10 +24,16 @@ public class Meal {
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Temporal(TemporalType.DATE)
-  private Date mealDate;
+  private Date date;
 
+  @NotBlank(message = "you cannot leave this field blank")
   private String type;
+
+  @Size(min = 3, max = 20, message = "description length must be between 3 and 20 characters")
   private String description;
+
+  @Min(value = 0, message = "it has to be at least zero calorie")
+  @Max(value = 10000, message = "cannot be more than 10.000 calorie")
   private int calories;
 
   public Meal() {
@@ -37,12 +47,12 @@ public class Meal {
     this.id = id;
   }
 
-  public Date getMealDate() {
-    return mealDate;
+  public Date getDate() {
+    return date;
   }
 
-  public void setMealDate(Date mealDate) {
-    this.mealDate = mealDate;
+  public void setDate(Date date) {
+    this.date = date;
   }
 
   public String getType() {

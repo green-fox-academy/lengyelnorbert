@@ -1,13 +1,7 @@
 body {
   width: 800px;
   padding-left: 25px;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border: 5px;
-  border-collapse: collapse;
-  width: 100%;
+  font-size: 15px;
 }
 
 td, th {
